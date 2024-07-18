@@ -1,38 +1,42 @@
 <script>
+import AppFlatCard from './AppFlatCard.vue'
+import axios from 'axios';
+import { store } from '../store';
+
 export default {
     components: {
+        AppFlatCard,
 
     },
     data() {
         return {
-
+            store,
         };
     },
+
+    created() {
+        axios.get("http://127.0.0.1:8000/api/flats/search", {
+            params: {
+                latitude: this.store.latitude,
+                longitude: this.store.longitude,
+            }
+        }).then((resp) => {
+            console.log(resp)
+
+        })
+    }
 };
 </script>
 
 <template>
-<div class="container mt-5 mb-5">
-    <div class="row d-flex justify-content-between">
-        <h1 class="mb-3">Le camere più viste</h1>
-        <div class="col-3 ms_card_img">
-            <img class="img_container" src="../../public/img/modern-house.jpg" alt="">
+    <div class="bg ms_backC_card pb-5">
+        <div class="container mt-5 mb-5">
+            <h1 class="pt-5">Risultati ricerca</h1>
+            <div class="row d-flex justify-content-between">
+                <AppFlatCard />
+            </div>
         </div>
-
-        <div class="col-3 ms_card_img">
-            <img class="img_container" src="../../public/img/modern-house.jpg" alt="">
-        </div>
-
-        <div class="col-3 ms_card_img">
-            <img class="img_container" src="../../public/img/modern-house.jpg" alt="">
-        </div>
-
-        <div class="col-3 ms_card_img">
-            <img class="img_container" src="../../public/img/modern-house.jpg" alt="">
-        </div>
-
     </div>
-</div>
 </template>
 
 <style lang="scss" scoped>
@@ -41,8 +45,11 @@ export default {
 .img_container {
     object-fit: fill;
     border-radius: 1.0rem;
-    max-height:100%;
+    max-height: 100%;
     max-width: 100%;
 }
 
+.bg {
+    margin-top: 100px;
+}
 </style>

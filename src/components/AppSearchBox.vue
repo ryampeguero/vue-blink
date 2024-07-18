@@ -1,5 +1,6 @@
 <script>
 import axios from 'axios';
+import { store } from '../store';
 
 export default {
     components: {
@@ -7,6 +8,7 @@ export default {
     },
     data() {
         return {
+            store,
             query: '',
             suggestions: [],
             selectedIndex: -1,
@@ -32,8 +34,8 @@ export default {
         chooseSuggestion(suggestion) {
             console.log('Suggestion chosen:', suggestion);
             this.query = suggestion.address.freeformAddress;
-            this.latitude = suggestion.position.lat;
-            this.longitude = suggestion.position.lon;
+            this.store.latitude = suggestion.position.lat;
+            this.store.longitude = suggestion.position.lon;
             this.suggestions = [];
 
 
@@ -57,14 +59,14 @@ export default {
         },
         search() {
             // visualizzare dati in console
-            console.log('Latitude:', this.latitude);
-            console.log('Longitude:', this.longitude);
+            console.log('Latitude:', this.store.latitude);
+            console.log('Longitude:', this.store.longitude);
 
             //Esegui la ricerca sul backend
             axios.get('http://127.0.0.1:8000/api/flats/search', {
                 params: {
-                    latitude: this.latitude,
-                    longitude: this.longitude,
+                    latitude: this.store.latitude,
+                    longitude: this.store.longitude,
                 }
             })
                 .then(response => {
@@ -99,10 +101,7 @@ export default {
         <input type="hidden" name="longitude" :value="longitude">
     </div>
 
-    <div>
-        <button @click="search" class="ms_button search_ico " type="submit"><img class="btn_search"
-                src="../../public/Icons/search.svg" alt=""></button>
-    </div>
+
 
 
 </template>

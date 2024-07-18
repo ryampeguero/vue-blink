@@ -1,13 +1,41 @@
 <script>
+import AppSearchBox from './AppSearchBox.vue';
+
 export default {
     components: {
-
+        AppSearchBox,
     },
     data() {
         return {
 
         };
+
+        
     },
+
+    methods: {
+        search() {
+            // visualizzare dati in console
+            console.log('Latitude:', this.latitude);
+            console.log('Longitude:', this.longitude);
+
+            //Esegui la ricerca sul backend
+            axios.get('http://127.0.0.1:8000/api/flats/search', {
+                params: {
+                    latitude: this.latitude,
+                    longitude: this.longitude,
+                }
+            })
+                .then(response => {
+                    console.log(response.data.results);
+                    //faccio chiamta api al nostro backEnd
+                    
+                })
+                .catch(error => {
+                    console.error('Errore:', error);
+                });
+        },
+    }
 };
 </script>
 
@@ -22,8 +50,7 @@ export default {
                     <div class=" d-flex gap-5 align-items-center ">
                         <div class="">
                             <label class="text_searchbar ps-3" for="">Dove</label>
-                            <input placeholder="Cerca destinazioni" value="" name="address"
-                                class="form-control ms_search_bar_in" type="text" id="address" autocomplete="off">
+                            <AppSearchBox />
                         </div>
                         <div>
                             <label class="text_searchbar ps-3" for="">Quanti</label>

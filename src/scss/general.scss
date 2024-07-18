@@ -1,6 +1,7 @@
 @use "./partials/_variables" as *;
 @use "./partials/fonts" as *;
 @import "../../node_modules/bootstrap/scss/bootstrap";
+@import "../../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
 
 // RESET
 * {
@@ -189,8 +190,8 @@ nav {
     color: $primary-color;
     padding: 0;
     margin: 0;
-    max-width: 300px;
-    
+    max-width: 500px;
+    background-color: white !important;
 }
 
 .ms_card_out {
@@ -271,6 +272,10 @@ nav {
 // BACKGROUND-COLOR
 .ms_backC_primary {
     background-color: $primary-color !important;
+}
+
+.ms_backC_card {
+    background-color: $primary-color-shade !important;
 }
 
 .ms_backC_secondary {
