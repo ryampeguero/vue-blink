@@ -10,8 +10,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
-
+    
+    
     li {
         list-style-type: none;
     }
@@ -87,6 +87,7 @@ label {
 
 a {
     text-decoration: none;
+    color: inherit;
 }
 
 .mt-100 {
@@ -158,11 +159,29 @@ nav {
     color: $primary-color;
     padding: 0.5rem;
     background-color: white;
+    border-radius: 999em 999em 999em 999em;
 }
 
 .ms_card {
     box-shadow: $shadow2;
     border-radius: 0.5rem;
+    color: $primary-color;
+    padding: 0.5rem;
+}
+
+.ms_card_img {
+    box-shadow: $shadow2;
+    border-radius: 1.0rem;
+    color: $primary-color;
+    padding: 0;
+    margin: 0;
+    max-width: 300px;
+    
+}
+
+.ms_card_out {
+    box-shadow: $shadow2;
+    border-radius: 1.5rem;
     color: $primary-color;
     padding: 0.5rem;
 }
@@ -179,6 +198,10 @@ nav {
 // TEXT
 .text-navbar {
     color: $primary-color;
+}
+
+.txt-white {
+    color: white;
 }
 
 
@@ -275,6 +298,8 @@ nav {
     border-radius: 0.5rem;
     box-shadow: $shadow2;
 }
+
+
 
 // SHADOW
 .ms_shadow {
