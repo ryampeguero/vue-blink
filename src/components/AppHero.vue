@@ -1,7 +1,9 @@
 <script>
+import AppSearchBox from './AppSearchBox.vue';
+
 export default {
     components: {
-
+        AppSearchBox,
     },
     data() {
         return {
@@ -19,12 +21,7 @@ export default {
             </div>
             <div class="ms_search_bar mt-5">
                 <div class="p-4 d-flex gap-5 align-items-center">
-                    <div>
-                        <input placeholder="Dove vuoi soggiornare?" value="" name="address" class="form-control ms_search_bar" type="text" id="address" autocomplete="off">
-                    </div>
-                    <div>
-                        <button class="ms_button search_ico " type="submit"><img class="btn_search" src="../../public/Icons/search.svg" alt=""></button>
-                    </div>
+                        <AppSearchBox />
                 </div>
             </div>
         </div>
