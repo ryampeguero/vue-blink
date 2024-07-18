@@ -5,16 +5,14 @@ export default {
     },
     data() {
         return {
-        
+
         }
     }
 }
 </script>
 
-<template>
-    
+<template class >
+  
 </template>
 
-<style>
-
-</style>
+<style></style>

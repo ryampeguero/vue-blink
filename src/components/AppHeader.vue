@@ -8,8 +8,8 @@ export default {
                     routeName: "home"
                 },
                 {
-                    title: "CONTACTS",
-                    routeName: "contacts"
+                    title: "RICERCA AVANZATA",
+                    routeName: "ricerca-avanzata"
                 },
                 {
                     title: "ABOUT",
@@ -27,7 +27,7 @@ export default {
 
 <template>
 
-    <section class="header-menu justify-content-between">
+    <section class="header-menu">
         <!-- LOGO -->
         <div class="d-flex align-items-center ms-2">
             <img class="logo" src="../../public/Icons/blink-logo-white.svg" alt="business logo">
@@ -47,12 +47,13 @@ export default {
     top: 0;
     left: 0;
     display: flex;
+    justify-content: space-around;
     height: 80px;
     max-height: 80px;
     position: fixed;
     width: 100%;
     z-index: 2;
-    background-color: rgba(255, 255, 255, 0);
+    background-color: white;
     box-shadow: 2px 2px 10px #888888;
 
 
@@ -67,7 +68,7 @@ export default {
         display: flex;
         margin-bottom: 0;
         .router-link-active {
-            color: blue;
+            color: #FF6827;
             font-weight: 600;
         }
     }
