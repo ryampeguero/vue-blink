@@ -1,7 +1,11 @@
 <script>
+import AppHeroAR from '../components/AppHeroAR.vue';
+
+
 
 export default {
     components: {
+        AppHeroAR,
 
     },
     data() {
@@ -13,7 +17,7 @@ export default {
 </script>
 
 <template>
-    
+    <AppHeroAR />
 </template>
 
 <style>
