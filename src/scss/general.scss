@@ -157,9 +157,23 @@ nav {
     align-items: center;
     border-radius: 0.5rem;
     color: $primary-color;
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: 999em 999em 999em 999em;
+    position: relative;
+}
+
+.ms_search_bar_in {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5rem;
+    color: $primary-color;
     padding: 0.5rem;
     background-color: white;
     border-radius: 999em 999em 999em 999em;
+    padding: 1rem;
+    border: 0;
 }
 
 .ms_card {
@@ -197,6 +211,12 @@ nav {
 
 // TEXT
 .text-navbar {
+    color: $primary-color;
+}
+
+.text_searchbar {
+    font-size: 1.4rem;
+    font-weight: bold;
     color: $primary-color;
 }
 
@@ -289,6 +309,7 @@ nav {
     border-radius: 0.5rem;
     box-shadow: $shadow2;
 }
+
 
 .ms_button_secondary {
     border: 1px solid $primary-color;
