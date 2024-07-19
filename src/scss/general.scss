@@ -2,7 +2,7 @@
 @use "./partials/fonts" as *;
 @import "../../node_modules/bootstrap/scss/bootstrap";
 @import "../../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
-
+@import "../../node_modules/@tomtom-international/web-sdk-maps/dist/maps.css";
 // RESET
 * {
     font-family: BlauerNue;
