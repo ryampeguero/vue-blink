@@ -23,11 +23,13 @@ export default {
                 this.passwordErrore = 'La password è obbligatoria';
             }
             if (this.email && this.password) {
-                // Esegui il login
+
                 const params = {
                     email: this.email,
                     password: this.password,
                 };
+
+
 
                 axios
                     .post('http://127.0.0.1:8000/api/login', params)
@@ -37,6 +39,15 @@ export default {
                         console.log(this.token);
                         localStorage.setItem('authToken', this.token);
                         this.$router.push('/profile');
+                    })
+                const paramsbis = {
+                    email: this.email,
+                    token: this.token,
+                };
+                axios
+                    .put('http://127.0.0.1:8000/api/login', paramsbis)
+                    .then((resp) => {
+                        console.log(resp)
                     })
                     .catch((error) => {
                         console.error(error);
