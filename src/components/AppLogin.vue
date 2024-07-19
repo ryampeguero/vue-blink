@@ -1,5 +1,6 @@
 <script>
 import axios from "axios";
+
 export default {
     data() {
         return {
@@ -8,13 +9,14 @@ export default {
             ricorda: false,
             emailErrore: '',
             passwordErrore: '',
-            toke: [],
+            token: '',
         };
     },
     methods: {
         gestisciInvio() {
             this.emailErrore = '';
             this.passwordErrore = '';
+
             // Validazione del form
             if (!this.email) {
                 this.emailErrore = "L'email è obbligatoria";
@@ -23,34 +25,43 @@ export default {
                 this.passwordErrore = 'La password è obbligatoria';
             }
             if (this.email && this.password) {
-
                 const params = {
                     email: this.email,
                     password: this.password,
                 };
-
-
+                const form = new FormData();
+                form.append('email', this.email);
+                form.append('password', this.password);
+                console.log(this.email);
 
                 axios
-                    .post('http://127.0.0.1:8000/api/login', params)
+                    .post('http://127.0.0.1:8000/api/login', form, {
+                        headers: { "Accept": "application/json" },
+                    })
                     .then((resp) => {
-
+                        // Salva il token nel localStorage
                         this.token = resp.data.access_token;
                         console.log(this.token);
                         localStorage.setItem('authToken', this.token);
-                        this.$router.push('/profile');
-                    })
-                const paramsbis = {
-                    email: this.email,
-                    token: this.token,
-                };
-                axios
-                    .put('http://127.0.0.1:8000/api/login', paramsbis)
-                    .then((resp) => {
-                        console.log(resp)
+
+
+                        axios.get('http://127.0.0.1:8000/api/user', {
+                            headers: {
+                                Authorization: `Bearer ${this.token}`
+                            }
+                        })
+                            .then(response => {
+                                console.log('Risposta dal server:', response.data);
+                                // Reindirizza all'area protetta dell'applicazione
+                                this.$router.push('/profile');
+                            })
+                            .catch(error => {
+                                console.error('Errore durante la richiesta protetta:', error);
+                                // Gestisci eventuali errori della richiesta protetta
+                            });
                     })
                     .catch((error) => {
-                        console.error(error);
+                        console.error('Errore durante il login:', error);
                         if (error.response && error.response.data) {
                             const errors = error.response.data.errors;
                             if (errors.email) {
@@ -131,8 +142,8 @@ export default {
 </template>
 
 <style>
-.test{
+.test {
     min-height: 100vh;
     margin-top: 200px;
 }
-</style>    
+</style>
