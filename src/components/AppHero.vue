@@ -3,11 +3,14 @@ import AppSearchBox from './AppSearchBox.vue';
 import axios from "axios";
 import { store } from '../store';
 import AppFlatCard from './AppFlatCard.vue'
+import AppMap from './AppMap.vue';
+import tt from '@tomtom-international/web-sdk-maps';
 
 export default {
     components: {
         AppSearchBox,
         AppFlatCard,
+        AppMap,
     },
     data() {
         return {
@@ -73,17 +76,45 @@ export default {
                 params: {
                     latitude: this.store.latitude,
                     longitude: this.store.longitude,
+                    range: 1,
                 }
             })
                 .then(response => {
                     this.store.flatArray = response.data.results;
                     console.log(response.data.results);
+                    this.setMap();
                     //faccio chiamta api al nostro backEnd
                 })
                 .catch(error => {
                     console.error('Errore:', error);
                 });
         },
+
+        setMap() {
+            console.log('ciao');
+            const position = {
+                lat: store.latitude,
+                lon: store.longitude
+            }
+            
+            var map = tt.map({//Setting coordinates to map in View
+                key: 'bKZHQIbuOQ0b5IXmQXQ2FTUOUR3u0a26',
+                container: 'map',
+                center: position,
+                zoom: 5
+            });
+            
+            store.flatArray.forEach((currFlat)=>{
+                const position = {
+                    lat: currFlat.latitude,
+                    lon: currFlat.longitude,
+                }
+                console.log(position);
+                var marker = new tt.Marker().setLngLat(position).addTo(map)
+            })
+
+            return map;
+        }
     }
 };
 </script>
@@ -104,6 +135,7 @@ export default {
                 </div>
             </div>
         </div>
+        <AppMap />
     </header>
 </template>
 
