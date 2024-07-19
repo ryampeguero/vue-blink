@@ -49,7 +49,7 @@ export default {
                 <div>
                     <div class=" d-flex gap-5 align-items-center ">
                         <div class="">
-                            <label class="text_searchbar ps-3" for="">Dove</label>
+                            <label class="text_searchbar ps-3" for="">Dove<span class="orange">*</span></label>
                             <AppSearchBox />
                         </div>
                         <div>
@@ -61,13 +61,11 @@ export default {
                                     class="form-control ms_search_bar_in" type="text" id="address" autocomplete="off">
                                 <input placeholder="N° di letti" value="" name="address"
                                     class="form-control ms_search_bar_in" type="text" id="address" autocomplete="off">
-
                                     <input placeholder="N° metri quadri" value="" name="address"
                                     class="form-control ms_search_bar_in" type="text" id="address" autocomplete="off">
                             </div>
                         </div>
                     </div>
-
                     <div class="search_button">
                         <button class="ms_button search_ico me-4" type="submit"><img class="btn_search"
                                 src="../../public/Icons/search.svg" alt=""></button>
@@ -81,6 +79,9 @@ export default {
 <style lang="scss" scoped>
 @use"../scss/partials/_variables" as*;
 
+.orange {
+    color: $secondary-color;
+}
 
 .hero {
     background-size: cover;

@@ -95,8 +95,6 @@ export default {
 
 footer {
     background-color: $primary-color;
-    bottom: 0;
-    width: 100%;
     margin-top: auto;
 
     .footer_title {
