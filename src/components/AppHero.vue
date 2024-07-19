@@ -66,11 +66,18 @@ export default {
             }
         },
 
+        redirectToAdvanceReserch() {
+            // this.$router.push("/ricerca-avanzata");
+            window.location.href = "/ricerca-avanzata";
+            console.log("ciaoooooo");
+        },
+
         search() {
+            localStorage.setItem("latitude",this.store.latitude);
+            localStorage.setItem("longitude",this.store.longitude);
             // visualizzare dati in console
             console.log('Latitude:', this.store.latitude);
             console.log('Longitude:', this.store.longitude);
-
             //Esegui la ricerca sul backend
             axios.get('http://127.0.0.1:8000/api/flats/search', {
                 params: {
@@ -88,6 +95,8 @@ export default {
                 .catch(error => {
                     console.error('Errore:', error);
                 });
+
+                this.redirectToAdvanceReserch();
         },
 
         setMap() {
@@ -96,15 +105,15 @@ export default {
                 lat: store.latitude,
                 lon: store.longitude
             }
-            
+
             var map = tt.map({//Setting coordinates to map in View
                 key: 'bKZHQIbuOQ0b5IXmQXQ2FTUOUR3u0a26',
                 container: 'map',
                 center: position,
                 zoom: 5
             });
-            
-            store.flatArray.forEach((currFlat)=>{
+
+            store.flatArray.forEach((currFlat) => {
                 const position = {
                     lat: currFlat.latitude,
                     lon: currFlat.longitude,
@@ -129,8 +138,11 @@ export default {
                 <div class="p-4 d-flex gap-5 align-items-center">
                     <AppSearchBox />
                     <div>
-                        <button @click="search" class="ms_button search_ico " type="submit"><img class="btn_search"
-                                src="../../public/Icons/search.svg" alt=""></button>
+                        <button @click="search"  class="ms_button search_ico " type="submit">
+
+                            <img class="btn_search" src="../../public/Icons/search.svg" alt="">
+                        </button>
+
                     </div>
                 </div>
             </div>

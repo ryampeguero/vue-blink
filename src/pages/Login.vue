@@ -21,5 +21,15 @@ export default {
 
 <style lang="scss" scoped>
 
+.login_page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../../public/img/background_login.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 800px;
+    margin-top: 80px;
+}
 
 </style>

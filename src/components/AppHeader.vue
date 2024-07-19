@@ -8,10 +8,6 @@ export default {
                     routeName: "home"
                 },
                 {
-                    title: "RICERCA AVANZATA",
-                    routeName: "ricerca-avanzata"
-                },
-                {
                     title: "ABOUT",
                     routeName: "about"
                 },
