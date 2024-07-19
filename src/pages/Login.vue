@@ -17,4 +17,5 @@ export default {
     <AppLogin />
 </template>
 
-<style></style>
+<style>
+</style>

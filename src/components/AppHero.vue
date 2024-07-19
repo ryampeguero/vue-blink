@@ -76,7 +76,7 @@ export default {
                 params: {
                     latitude: this.store.latitude,
                     longitude: this.store.longitude,
-                    range: 1,
+                    range: 100,
                 }
             })
                 .then(response => {

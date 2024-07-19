@@ -61,10 +61,10 @@ export default {
 </script>
 
 <template>
-    <div class="container mt-4">
+    <div class="container mt-5 test">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card">
+                <div class="card mt-5">
                     <div class="card-header">Accedi</div>
                     <div class="card-body">
                         <form @submit.prevent="gestisciInvio">
@@ -119,4 +119,9 @@ export default {
     </div>
 </template>
 
-<style></style>
+<style>
+.test{
+    min-height: 100vh;
+    margin-top: 200px;
+}
+</style>
