@@ -1,7 +1,8 @@
 @use "./partials/_variables" as *;
 @use "./partials/fonts" as *;
 @import "../../node_modules/bootstrap/scss/bootstrap";
-
+@import "../../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
+@import "../../node_modules/@tomtom-international/web-sdk-maps/dist/maps.css";
 // RESET
 * {
     font-family: BlauerNue;
@@ -157,9 +158,23 @@ nav {
     align-items: center;
     border-radius: 0.5rem;
     color: $primary-color;
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: 999em 999em 999em 999em;
+    position: relative;
+}
+
+.ms_search_bar_in {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5rem;
+    color: $primary-color;
     padding: 0.5rem;
     background-color: white;
     border-radius: 999em 999em 999em 999em;
+    padding: 1rem;
+    border: 0;
 }
 
 .ms_card {
@@ -175,8 +190,8 @@ nav {
     color: $primary-color;
     padding: 0;
     margin: 0;
-    max-width: 300px;
-    
+    max-width: 500px;
+    background-color: white !important;
 }
 
 .ms_card_out {
@@ -197,6 +212,12 @@ nav {
 
 // TEXT
 .text-navbar {
+    color: $primary-color;
+}
+
+.text_searchbar {
+    font-size: 1.4rem;
+    font-weight: bold;
     color: $primary-color;
 }
 
@@ -253,6 +274,10 @@ nav {
     background-color: $primary-color !important;
 }
 
+.ms_backC_card {
+    background-color: $primary-color-shade !important;
+}
+
 .ms_backC_secondary {
     background-color: $secondary-color !important;
 }
@@ -289,6 +314,7 @@ nav {
     border-radius: 0.5rem;
     box-shadow: $shadow2;
 }
+
 
 .ms_button_secondary {
     border: 1px solid $primary-color;

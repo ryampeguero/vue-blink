@@ -12,7 +12,7 @@ export default {
 </script>
 
 <template class >
-  
+
 </template>
 
 <style></style>

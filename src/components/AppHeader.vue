@@ -55,15 +55,12 @@ export default {
     z-index: 2;
     background-color: white;
     box-shadow: 2px 2px 10px #888888;
-
-
     
     .logo {
         object-fit: fill;
         height: 60%;
         width: 100%;
     }
-
     ul {
         display: flex;
         margin-bottom: 0;

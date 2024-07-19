@@ -72,10 +72,14 @@ export default {
 </script>
 
 <template>
-    <div class="container mt-4">
+<<<<<<< HEAD
+    <div class="container mt-5 test">
+=======
+    <div class="container ms_login">
+>>>>>>> 8557d70d9bf50d47609c841e4942d632b93864ec
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card">
+                <div class="card mt-5">
                     <div class="card-header">Accedi</div>
                     <div class="card-body">
                         <form @submit.prevent="gestisciInvio">
@@ -130,4 +134,18 @@ export default {
     </div>
 </template>
 
-<style></style>
+<<<<<<< HEAD
+<style>
+.test{
+    min-height: 100vh;
+    margin-top: 200px;
+}
+=======
+<style lang="scss" scoped>
+
+.ms_login {
+
+}
+
+>>>>>>> 8557d70d9bf50d47609c841e4942d632b93864ec
+</style>
