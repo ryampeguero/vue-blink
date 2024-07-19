@@ -25,61 +25,61 @@ export default {
                         <h3>Acireale</h3>
                         <a href="">Soggiorni in baite</a>
                     </li>
-    
+
                     <li>
                         <h3>Amsterdam</h3>
                         <a href="">Soggiorni in baite</a>
                     </li>
-    
+
                     <li>
                         <h3>Arezzo</h3>
                         <a href="">Soggiorni in baite</a>
                     </li>
-    
+
                     <li>
                         <h3>Assisi</h3>
                         <a href="">Soggiorni in baite</a>
                     </li>
                 </ul>
-    
+
                 <ul>
                     <li>
                         <h3>Barcellona</h3>
                         <a href="">Soggiorni in baite</a>
                     </li>
-    
+
                     <li>
                         <h3>Bologna</h3>
                         <a href="">Soggiorni in case</a>
                     </li>
-    
+
                     <li>
                         <h3>Catania</h3>
                         <a href="">Soggiorni in chalet</a>
                     </li>
-    
+
                     <li>
                         <h3>Chia</h3>
                         <a href="">Case Vacanza</a>
                     </li>
                 </ul>
-                
+
                 <ul>
                     <li>
                         <h3>Acireale</h3>
                         <a href="">Soggiorni in baite</a>
                     </li>
-    
+
                     <li>
                         <h3>Firenze</h3>
                         <a href="">Soggiorni in case</a>
                     </li>
-    
+
                     <li>
                         <h3>Giulianova</h3>
                         <a href="">Case vacanze</a>
                     </li>
-    
+
                     <li>
                         <h3>Livorno</h3>
                         <a href="">Soggiorni in case</a>
@@ -113,9 +113,9 @@ footer {
         margin-top: 40px;
         display: flex;
         gap: 50px;
-        
+
         li {
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
         }
     }
 }
