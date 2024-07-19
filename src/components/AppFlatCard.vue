@@ -15,7 +15,7 @@ export default {
 
 <template>
 
-                <div class="col-3 ms_card_img " v-for="flat in store.flatArray">
+                <div class="ms_card_img mt-5" v-for="flat in store.flatArray">
 
                 <img class="img_container" :src="flat.img_path ? `${imgUrlBase}/${flat.img_path}`:`public/img/placeholder-img.png` " alt="">
                 <div class="p-3">
@@ -25,7 +25,6 @@ export default {
                     <h4><i class="fa-solid fa-bed"></i> Bagni: {{ flat.beds }}</h4>
                     <h4><i class="fa-solid fa-bath"></i> Letti: {{ flat.bathrooms }}</h4>
                 </div>
-
                 </div>
 </template>
 

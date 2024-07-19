@@ -92,7 +92,7 @@ export default {
     <header>
         <div class="hero flex-column d-flex justify-content-center align-items-center">
             <div class="">
-                <h1 class="title_hero">Scopri la tua prossima meta</h1>
+                <h1 class="title_hero"><span>Scopri la tua</span> prossima meta</h1>
             </div>
             <div class="ms_search_bar mt-5">
                 <div class="p-4 d-flex gap-5 align-items-center">

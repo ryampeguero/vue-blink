@@ -61,7 +61,7 @@ export default {
 </script>
 
 <template>
-    <div class="container mt-4">
+    <div class="container ms_login">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -119,4 +119,10 @@ export default {
     </div>
 </template>
 
-<style></style>
+<style lang="scss" scoped>
+
+.ms_login {
+
+}
+
+</style>

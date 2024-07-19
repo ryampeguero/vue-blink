@@ -14,7 +14,15 @@ export default {
 </script>
 
 <template>
-    <AppLogin />
+    <div class="login_page">
+        <AppLogin />
+    </div>
 </template>
 
-<style></style>
+<style lang="scss" scoped>
+
+.login_page {
+    
+}
+
+</style>
