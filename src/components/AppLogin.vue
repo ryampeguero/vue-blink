@@ -83,9 +83,8 @@ export default {
 </script>
 
 <template>
-
     <form @submit.prevent="gestisciInvio">
-        <div class="ms_card_out mt-5 container d-flex">
+        <div class="ms_card_out mt-5 container d-flex ms_backC_tertiary">
             <div class="row">
                 <div class="col-7 p-3 ps-4">
                     <div class="d-flex align-items-center mb-3">
@@ -107,7 +106,6 @@ export default {
                                 </span>
                             </div>
                         </div>
-
                         <div class="mb-4">
                             <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
                             <div class="">
@@ -119,7 +117,6 @@ export default {
                                 </span>
                             </div>
                         </div>
-
                         <div class="mb-4">
                             <div class="">
                                 <div class="form-check">
@@ -147,7 +144,6 @@ export default {
         </div>
     </form>
 </template>
-
 <style lang="scss" scoped>
 .ico {
     width: 15%;
