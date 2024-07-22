@@ -34,51 +34,61 @@ export default {
                 form.append('password', this.password);
                 console.log(this.email);
 
-                axios
-                    .post('http://127.0.0.1:8000/api/login', form, {
-                        headers: { "Accept": "application/json" },
-                    })
-                    .then((resp) => {
-                        // Salva il token nel localStorage
-                        this.token = resp.data.access_token;
+                const requestOptions = {
+                    method: "POST",
+                    redirect: "follow",
+                };
+
+                var xhr = new XMLHttpRequest();
+                xhr.withCredentials = true;
+
+                xhr.addEventListener("readystatechange", function () {
+                    if (this.readyState === 4) {
+                        const resp = JSON.parse(this.responseText);
+                        console.log(resp);
+                        this.token = resp.access_token;
+                        this.token = this.token.split('|')[1];
                         console.log(this.token);
-                        localStorage.setItem('authToken', this.token);
-
-
-                        axios.get('http://127.0.0.1:8000/api/user', {
-                            headers: {
-                                Authorization: `Bearer ${this.token}`
-                            }
-                        })
-                            .then(response => {
-                                console.log('Risposta dal server:', response.data);
-                                // Reindirizza all'area protetta dell'applicazione
-                                this.$router.push('/profile');
-                            })
-                            .catch(error => {
-                                console.error('Errore durante la richiesta protetta:', error);
-                                // Gestisci eventuali errori della richiesta protetta
-                            });
-                    })
-                    .catch((error) => {
-                        console.error('Errore durante il login:', error);
-                        if (error.response && error.response.data) {
-                            const errors = error.response.data.errors;
-                            if (errors.email) {
-                                this.emailErrore = errors.email[0];
-                            }
-                            if (errors.password) {
-                                this.passwordErrore = errors.password[0];
-                            }
+                        // WARNING: For GET requests, body is set to null by browsers.
+                        
+                        var newUrl = new URL('http://127.0.0.1:8000/api/user');
+                        var params1 = {
+                            Authorization: 'Bearer ' + this.token
                         }
-                    });
+                        newUrl.search = new URLSearchParams(params1).toString();
+                        console.log(newUrl.href);
+
+                        var xhr = new XMLHttpRequest();
+                        xhr.withCredentials = true;
+
+                        xhr.addEventListener("readystatechange", function () {
+                            if (this.readyState === 4) {
+                                console.log(this.responseText);
+                            }
+                        });
+
+                        xhr.open("GET", newUrl.href);
+                        // WARNING: Cookies will be stripped away by the browser before sending the request.
+                        xhr.setRequestHeader("Cookie", "XSRF-TOKEN=eyJpdiI6IkhtWjh1WUtLUkFoaks0L0FzQ1phMFE9PSIsInZhbHVlIjoickdTUW14ckhtTG5abU9ITzdENjM4c1BkM1oydEtCdTY3MU1KMVdDT2xmbUpWR214R1UrYmNFeXJ0Z0xZZFBHM1RBMTEwS1l0Z3VKelRZWkNacE9EaHJEU24rU2doUUpBQmlzbVUxL2FtNWdDbzI2SnVNZFVHNXhBaituUFdMOVUiLCJtYWMiOiI3YTZkNmIzNGM2ZGU3NTIyMTkyNzEyNGE0M2I2Zjc2ODQ1ZTgyZjIwM2Q3ZTFhMzhlZTVmYmNhOTVhNmViMWVlIiwidGFnIjoiIn0%3D; laravel_session=eyJpdiI6Im1kUDhqMXM5NjBEVmtMNkxHN2hnUGc9PSIsInZhbHVlIjoiL0VhWjhVenIvbGd4U1gzQVBjdjg2d2dwc014dnNUTW90djNFRWsvYjVSd21FVmZObGlpNHJHVTBBM0JsNzQ3UE10THIzeFVxNGFOYkY2d0RnOTJ5M0REQlFuczdvWXpyZm5WT0k2UlBmUFMxVzRVanBJMWZiRStqYkpYMjQ1VEciLCJtYWMiOiJmNGVjOTI0NmZhZjVmZjUyYTM4MzRkMDc5OWVlNGQzMzAxMjUyNGEwNDBmN2JmMmQxOGVhZjc0ZjQxNzA5MTVkIiwidGFnIjoiIn0%3D");
+
+                        xhr.send();
+                    }
+                });
+
+                xhr.open("POST", "http://127.0.0.1:8000/api/login?email=ryampeguero%40gmail.com&password=12345678");
+
+                xhr.send();
             }
         },
         passwordDimenticata() {
             // Gestione della password dimenticata
             console.log('Password dimenticata cliccata');
+
+
         }
     }
+
+
 };
 </script>
 
