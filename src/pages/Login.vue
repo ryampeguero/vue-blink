@@ -9,18 +9,19 @@ export default {
         return {
 
         }
-    }
+    },
+    created() {
+    },
 }
 </script>
 
 <template>
-    <div class="login_page">
+    <div id="prova" class="login_page">
         <AppLogin />
     </div>
 </template>
 
 <style lang="scss" scoped>
-
 .login_page {
     display: flex;
     justify-content: center;
@@ -30,6 +31,6 @@ export default {
     background-repeat: no-repeat;
     min-height: 800px;
     margin-top: 80px;
+    scroll-behavior: smooth;
 }
-
 </style>

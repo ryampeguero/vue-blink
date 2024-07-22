@@ -169,6 +169,7 @@ created() {
             </div>
         </div>
     </header>
+    <AppMap />
 </template>
 
 <style lang="scss" scoped>

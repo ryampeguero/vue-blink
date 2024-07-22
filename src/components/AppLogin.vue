@@ -24,23 +24,19 @@ export default {
             if (!this.password) {
                 this.passwordErrore = 'La password è obbligatoria';
             }
-            if (this.email && this.password) {
-                const params = {
-                    email: this.email,
-                    password: this.password,
-                };
-                const form = new FormData();
-                form.append('email', this.email);
-                form.append('password', this.password);
+            if (this.email && this.password) { 
                 console.log(this.email);
-
-                const requestOptions = {
-                    method: "POST",
-                    redirect: "follow",
-                };
+                console.log(this.password);
 
                 var xhr = new XMLHttpRequest();
                 xhr.withCredentials = true;
+
+                var loginUrl = new URL('http://127.0.0.1:8000/api/login');
+                var params1 = {
+                    email: this.email,
+                    password: this.password
+                }
+                loginUrl.search = new URLSearchParams(params1).toString();
 
                 xhr.addEventListener("readystatechange", function () {
                     if (this.readyState === 4) {
@@ -50,13 +46,6 @@ export default {
                         this.token = this.token.split('|')[1];
                         console.log(this.token);
                         // WARNING: For GET requests, body is set to null by browsers.
-                        
-                        var newUrl = new URL('http://127.0.0.1:8000/api/user');
-                        var params1 = {
-                            Authorization: 'Bearer ' + this.token
-                        }
-                        newUrl.search = new URLSearchParams(params1).toString();
-                        console.log(newUrl.href);
 
                         var xhr = new XMLHttpRequest();
                         xhr.withCredentials = true;
@@ -67,15 +56,17 @@ export default {
                             }
                         });
 
-                        xhr.open("GET", newUrl.href);
+                        xhr.open("GET", 'http://127.0.0.1:8000/api/user');
                         // WARNING: Cookies will be stripped away by the browser before sending the request.
-                        xhr.setRequestHeader("Cookie", "XSRF-TOKEN=eyJpdiI6IkhtWjh1WUtLUkFoaks0L0FzQ1phMFE9PSIsInZhbHVlIjoickdTUW14ckhtTG5abU9ITzdENjM4c1BkM1oydEtCdTY3MU1KMVdDT2xmbUpWR214R1UrYmNFeXJ0Z0xZZFBHM1RBMTEwS1l0Z3VKelRZWkNacE9EaHJEU24rU2doUUpBQmlzbVUxL2FtNWdDbzI2SnVNZFVHNXhBaituUFdMOVUiLCJtYWMiOiI3YTZkNmIzNGM2ZGU3NTIyMTkyNzEyNGE0M2I2Zjc2ODQ1ZTgyZjIwM2Q3ZTFhMzhlZTVmYmNhOTVhNmViMWVlIiwidGFnIjoiIn0%3D; laravel_session=eyJpdiI6Im1kUDhqMXM5NjBEVmtMNkxHN2hnUGc9PSIsInZhbHVlIjoiL0VhWjhVenIvbGd4U1gzQVBjdjg2d2dwc014dnNUTW90djNFRWsvYjVSd21FVmZObGlpNHJHVTBBM0JsNzQ3UE10THIzeFVxNGFOYkY2d0RnOTJ5M0REQlFuczdvWXpyZm5WT0k2UlBmUFMxVzRVanBJMWZiRStqYkpYMjQ1VEciLCJtYWMiOiJmNGVjOTI0NmZhZjVmZjUyYTM4MzRkMDc5OWVlNGQzMzAxMjUyNGEwNDBmN2JmMmQxOGVhZjc0ZjQxNzA5MTVkIiwidGFnIjoiIn0%3D");
-
+                        // xhr.setRequestHeader("Cookie", "XSRF-TOKEN=eyJpdiI6IkhtWjh1WUtLUkFoaks0L0FzQ1phMFE9PSIsInZhbHVlIjoickdTUW14ckhtTG5abU9ITzdENjM4c1BkM1oydEtCdTY3MU1KMVdDT2xmbUpWR214R1UrYmNFeXJ0Z0xZZFBHM1RBMTEwS1l0Z3VKelRZWkNacE9EaHJEU24rU2doUUpBQmlzbVUxL2FtNWdDbzI2SnVNZFVHNXhBaituUFdMOVUiLCJtYWMiOiI3YTZkNmIzNGM2ZGU3NTIyMTkyNzEyNGE0M2I2Zjc2ODQ1ZTgyZjIwM2Q3ZTFhMzhlZTVmYmNhOTVhNmViMWVlIiwidGFnIjoiIn0%3D; laravel_session=eyJpdiI6Im1kUDhqMXM5NjBEVmtMNkxHN2hnUGc9PSIsInZhbHVlIjoiL0VhWjhVenIvbGd4U1gzQVBjdjg2d2dwc014dnNUTW90djNFRWsvYjVSd21FVmZObGlpNHJHVTBBM0JsNzQ3UE10THIzeFVxNGFOYkY2d0RnOTJ5M0REQlFuczdvWXpyZm5WT0k2UlBmUFMxVzRVanBJMWZiRStqYkpYMjQ1VEciLCJtYWMiOiJmNGVjOTI0NmZhZjVmZjUyYTM4MzRkMDc5OWVlNGQzMzAxMjUyNGEwNDBmN2JmMmQxOGVhZjc0ZjQxNzA5MTVkIiwidGFnIjoiIn0%3D");
+                        xhr.setRequestHeader('Accept', '*/*');
+                        
+                        xhr.setRequestHeader('Authorization', resp.token_type + " " +this.token);
                         xhr.send();
                     }
                 });
 
-                xhr.open("POST", "http://127.0.0.1:8000/api/login?email=ryampeguero%40gmail.com&password=12345678");
+                xhr.open("POST", loginUrl);
 
                 xhr.send();
             }

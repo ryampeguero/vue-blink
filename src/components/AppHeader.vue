@@ -54,7 +54,7 @@ export default {
     
     .logo {
         object-fit: fill;
-        height: 60%;
+        height: 50px;
         width: 100%;
     }
     ul {
