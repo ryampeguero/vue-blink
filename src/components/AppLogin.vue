@@ -1,15 +1,23 @@
 <script>
 import axios from "axios";
-
+import { store } from '../store';
 export default {
     data() {
         return {
+            store,
             email: '',
             password: '',
             ricorda: false,
             emailErrore: '',
             passwordErrore: '',
             token: '',
+            id: '',
+            name: '',
+            surname: '',
+            date_of_birth: '',
+            img_path: '',
+            created_at: '',
+            updated_at: '',
         };
     },
     methods: {
@@ -24,7 +32,7 @@ export default {
             if (!this.password) {
                 this.passwordErrore = 'La password è obbligatoria';
             }
-            if (this.email && this.password) { 
+            if (this.email && this.password) {
                 console.log(this.email);
                 console.log(this.password);
 
@@ -53,6 +61,18 @@ export default {
                         xhr.addEventListener("readystatechange", function () {
                             if (this.readyState === 4) {
                                 console.log(this.responseText);
+                                const responseObject = JSON.parse(xhr.responseText);
+
+                                const { id, name, surname, email, date_of_birth, img_path, created_at, updated_at } = responseObject;
+
+                                this.store.id = id;
+                                this.store.name = name;
+                                this.store.surname = surname;
+                                this.store.date_of_birth = date_of_birth;
+                                this.store.img_path = img_path;
+                                this.store.created_at = created_at;
+                                this.store.updated_at = updated_at;
+                                this.store.password = this.password;
                             }
                         });
 
@@ -60,8 +80,8 @@ export default {
                         // WARNING: Cookies will be stripped away by the browser before sending the request.
                         // xhr.setRequestHeader("Cookie", "XSRF-TOKEN=eyJpdiI6IkhtWjh1WUtLUkFoaks0L0FzQ1phMFE9PSIsInZhbHVlIjoickdTUW14ckhtTG5abU9ITzdENjM4c1BkM1oydEtCdTY3MU1KMVdDT2xmbUpWR214R1UrYmNFeXJ0Z0xZZFBHM1RBMTEwS1l0Z3VKelRZWkNacE9EaHJEU24rU2doUUpBQmlzbVUxL2FtNWdDbzI2SnVNZFVHNXhBaituUFdMOVUiLCJtYWMiOiI3YTZkNmIzNGM2ZGU3NTIyMTkyNzEyNGE0M2I2Zjc2ODQ1ZTgyZjIwM2Q3ZTFhMzhlZTVmYmNhOTVhNmViMWVlIiwidGFnIjoiIn0%3D; laravel_session=eyJpdiI6Im1kUDhqMXM5NjBEVmtMNkxHN2hnUGc9PSIsInZhbHVlIjoiL0VhWjhVenIvbGd4U1gzQVBjdjg2d2dwc014dnNUTW90djNFRWsvYjVSd21FVmZObGlpNHJHVTBBM0JsNzQ3UE10THIzeFVxNGFOYkY2d0RnOTJ5M0REQlFuczdvWXpyZm5WT0k2UlBmUFMxVzRVanBJMWZiRStqYkpYMjQ1VEciLCJtYWMiOiJmNGVjOTI0NmZhZjVmZjUyYTM4MzRkMDc5OWVlNGQzMzAxMjUyNGEwNDBmN2JmMmQxOGVhZjc0ZjQxNzA5MTVkIiwidGFnIjoiIn0%3D");
                         xhr.setRequestHeader('Accept', '*/*');
-                        
-                        xhr.setRequestHeader('Authorization', resp.token_type + " " +this.token);
+
+                        xhr.setRequestHeader('Authorization', resp.token_type + " " + this.token);
                         xhr.send();
                     }
                 });
