@@ -1,6 +1,6 @@
 <script>
 import axios from "axios";
-import { store } from '../store';
+import { store } from '../store.js';
 export default {
     data() {
         return {
@@ -11,13 +11,7 @@ export default {
             emailErrore: '',
             passwordErrore: '',
             token: '',
-            id: '',
-            name: '',
-            surname: '',
-            date_of_birth: '',
-            img_path: '',
-            created_at: '',
-            updated_at: '',
+            name: "",
         };
     },
     methods: {
@@ -60,20 +54,14 @@ export default {
 
                         xhr.addEventListener("readystatechange", function () {
                             if (this.readyState === 4) {
-                                console.log(this.responseText);
-                                const responseObject = JSON.parse(xhr.responseText);
 
-                                const { id, name, surname, email, date_of_birth, img_path, created_at, updated_at } = responseObject;
+                                this.name = this.responseText.split(',')[1];
+                                this.name = this.name.split(':')[1];
+                                this.name = this.name.replace(/"/g, '');
 
-                                this.store.id = id;
-                                this.store.name = name;
-                                this.store.surname = surname;
-                                this.store.date_of_birth = date_of_birth;
-                                this.store.img_path = img_path;
-                                this.store.created_at = created_at;
-                                this.store.updated_at = updated_at;
-                                this.store.password = this.password;
+
                             }
+
                         });
 
                         xhr.open("GET", 'http://127.0.0.1:8000/api/user');
@@ -89,6 +77,11 @@ export default {
                 xhr.open("POST", loginUrl);
 
                 xhr.send();
+                this.store.email = this.email;
+                this.store.token = this.token;
+                this.store.password = this.password;
+                this.store.name = this.name;
+
             }
         },
         passwordDimenticata() {
