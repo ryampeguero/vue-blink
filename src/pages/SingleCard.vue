@@ -19,6 +19,27 @@ export default {
 
         });
     },
+    methods: {
+        sendMessage() {
+            console.log(this.message);
+            axios.post(`http://127.0.0.1:8000/api/send-message`, {
+
+                message: this.message,
+                id_flat: this.flat.id,
+                email: this.emailform,
+
+            })
+                .then((response) => {
+                    console.log('Message sent successfully:', response.data);
+                    // Puoi aggiungere una notifica per l'utente qui
+                })
+                .catch((error) => {
+                    console.error('Error sending message:', error);
+                    // Puoi gestire l'errore qui
+                });
+        }
+    }
+
 };
 </script>
 
@@ -38,10 +59,15 @@ export default {
                 <h4><i class="fa-solid fa-bed"></i> Letti: {{ flat.beds }}</h4>
                 <h4><i class="fa-solid fa-bath"></i> Bagni: {{ flat.bathrooms }}</h4>
 
-                <form>
+                <form @submit.prevent="sendMessage">
                     <div class="mt-3">
                         <label for="mex_form" class="form-label">Lascia un messaggio all'Host</label>
-                        <textarea name="mex-form" id="mex_form" cols="30" rows="3"></textarea>
+                        <textarea v-model="message" name="mex-form" id="mex_form" cols="30" rows="3"></textarea>
+                    </div>
+                    <div class="mt-3">
+                        <label for="emailform" class="form-label">Inserisci la tua email</label>
+                        <input type="email" v-model="emailform" name="emailform" id="emailform" cols="30"
+                            rows="3"></input>
                     </div>
                     <div class="d-flex justify-content-end mt-3">
                         <button class="ms_button" type="submit">Invia</button>
