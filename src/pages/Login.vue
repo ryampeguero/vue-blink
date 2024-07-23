@@ -32,5 +32,6 @@ export default {
     min-height: 800px;
     margin-top: 80px;
     scroll-behavior: smooth;
+    height: 100vh;
 }
 </style>

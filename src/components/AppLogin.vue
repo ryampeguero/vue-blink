@@ -98,7 +98,7 @@ export default {
 
 <template>
 
-    <form @submit.prevent="gestisciInvio">
+    <form  @submit.prevent="gestisciInvio">
         <div class="ms_card_out mt-5 container d-flex">
             <div class="row">
                 <div class="col-7 p-3 ps-4">
@@ -173,4 +173,10 @@ export default {
     height: 100%;
     object-fit: cover;
 }
+
+.ms_card_out {
+    background-color: white !important;
+    
+}
+
 </style>
