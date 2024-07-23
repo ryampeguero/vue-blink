@@ -33,7 +33,7 @@ export default {
                 var xhr = new XMLHttpRequest();
                 xhr.withCredentials = true;
 
-                var loginUrl = new URL('http://127.0.0.1:8000/api/login');
+                var loginUrl = new URL('http://127.0.0.1:8000/api/register');
                 var params1 = {
                     email: this.email,
                     password: this.password
@@ -107,11 +107,19 @@ export default {
                             <img src="../../public/Icons/blink-ico.svg" alt="">
                         </div>
                         <div>
-                            <h3 class="mb-0 ms-2">Login</h3>
+                            <h3 class="mb-0 ms-2">Registrazione</h3>
                         </div>
                     </div>
                     <div class="mb-4 row-column">
                         <div class="">
+                            <div>
+                                <label class="col-form-label text-md-right"  for="Name">Nome</label>
+                                <input v-model="name" class="form-control" type="text">
+                            </div>
+                            <div>
+                                <label class="col-form-label text-md-right"  for="LastName">Cognome</label>
+                                <input v-model="lastname" class="form-control" type="text">
+                            </div>
                             <label for="email" class="col-form-label text-md-right">E-Mail</label>
                             <div class="">
                                 <input id="email" type="email" class="form-control" v-model="email"
@@ -135,11 +143,10 @@ export default {
                         </div>
 
                         <div class="mb-4">
-
                         </div>
                         <div class="mb-4 mb-0">
                             <div class="d-flex flex-column align-items-end">
-                                <button type="submit" class="ms_button">Accedi</button>
+                                <button type="submit" class="ms_button" @click="callRegisterApi">Accedi</button>
                                 <a class="btn btn-link" href="#" @click.prevent="passwordDimenticata">
                                     Hai dimenticato la password?
                                 </a>
@@ -173,5 +180,4 @@ export default {
     background-color: white !important;
     
 }
-
 </style>

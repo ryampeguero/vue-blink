@@ -12,8 +12,12 @@ export default {
                     routeName: "about"
                 },
                 {
-                    title: "PROFILE",
+                    title: "LOGIN",
                     routeName: "profile"
+                },
+                {
+                    title: "REGISTRAZIONE",
+                    routeName: "register"
                 },
             ]
         }

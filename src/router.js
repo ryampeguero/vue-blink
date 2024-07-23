@@ -6,6 +6,7 @@ import AdvancedResearch from "./pages/AdvancedResearch.vue";
 import Profile from "./pages/Profile.vue";
 import Login from "./pages/Login.vue";
 import SingleCard from "./pages/SingleCard.vue";
+import Register from "./pages/Register.vue";
 
 
 export const router = createRouter({
@@ -41,6 +42,11 @@ export const router = createRouter({
             path: "/info/:slug",
             name: "single-card",
             component: SingleCard,
+        },
+        {
+            path: "/Register",
+            name: "register",
+            component: Register,
         },
         
     ],
