@@ -1,16 +1,19 @@
 <script>
-import AppInputCounter from './AppInputCounter.vue';
-import AppSearchBox from './AppSearchBox.vue';
 import axios from 'axios';
 import { store } from '../store';
-import AppMap from './AppMap.vue';
 import tt from '@tomtom-international/web-sdk-maps';
+
+import AppInputCounter from './AppInputCounter.vue';
+import AppSearchBox from './AppSearchBox.vue';
+import AppMap from './AppMap.vue';
+import AppSearchBoxAR from './AppSearchBoxAR.vue';
 
 export default {
     components: {
         AppSearchBox,
         AppInputCounter,
         AppMap,
+        AppSearchBoxAR,
     },
     data() {
         return {
@@ -138,38 +141,9 @@ created() {
             <div class="">
                 <h1 class="title_hero">Scopri la tua prossima meta</h1>
             </div>
-            <div class="ms_search_bar mt-5 px-5">
-                <div>
-                    <div class=" d-flex gap-5 align-items-center ">
-                        <div class="">
-                            <label class="text_searchbar ps-3" for="">Dove<span class="orange">*</span></label>
-                            <AppSearchBox />
-                        </div>
-                        <div>
-                            <label class="text_searchbar ps-3" for="">Quanti</label>
-                            <div class="d-flex gap-3">
-                                <input placeholder="N° di stanze" value="" name="address"
-                                    class="form-control ms_search_bar_in" type="text" id="address" autocomplete="off">
-                                <input placeholder="N° di bagni" value="" name="address"
-                                    class="form-control ms_search_bar_in" type="text" id="address" autocomplete="off">
-                                <input placeholder="N° di letti" value="" name="address"
-                                    class="form-control ms_search_bar_in" type="text" id="address" autocomplete="off">
-                                <input placeholder="N° metri quadri" value="" name="address"
-                                    class="form-control ms_search_bar_in" type="text" id="address" autocomplete="off">
-                            </div>
-                            <AppInputCounter />
-                        </div>
-                    </div>
-                    <div class="search_button">
-                        <button @click="search" class="ms_button search_ico " type="submit">
-                            <img class="btn_search" src="../../public/Icons/search.svg" alt="">
-                        </button>
-                    </div>
-                </div>
-            </div>
+            <AppSearchBoxAR />
         </div>
     </header>
-    <AppMap />
 </template>
 
 <style lang="scss" scoped>
