@@ -34,7 +34,7 @@ export default {
 
 <style lang="scss">
 #map {
-    width: 100%;
+    width: 100vw;
     height: 300px;
 }
 </style>
