@@ -1,15 +1,17 @@
 <script>
 import axios from "axios";
-
+import { store } from '../store.js';
 export default {
     data() {
         return {
+            store,
             email: '',
             password: '',
             ricorda: false,
             emailErrore: '',
             passwordErrore: '',
             token: '',
+            name: "",
         };
     },
     methods: {
@@ -24,7 +26,7 @@ export default {
             if (!this.password) {
                 this.passwordErrore = 'La password è obbligatoria';
             }
-            if (this.email && this.password) { 
+            if (this.email && this.password) {
                 console.log(this.email);
                 console.log(this.password);
 
@@ -52,16 +54,22 @@ export default {
 
                         xhr.addEventListener("readystatechange", function () {
                             if (this.readyState === 4) {
-                                console.log(this.responseText);
+
+                                this.name = this.responseText.split(',')[1];
+                                this.name = this.name.split(':')[1];
+                                this.name = this.name.replace(/"/g, '');
+
+
                             }
+
                         });
 
                         xhr.open("GET", 'http://127.0.0.1:8000/api/user');
                         // WARNING: Cookies will be stripped away by the browser before sending the request.
                         // xhr.setRequestHeader("Cookie", "XSRF-TOKEN=eyJpdiI6IkhtWjh1WUtLUkFoaks0L0FzQ1phMFE9PSIsInZhbHVlIjoickdTUW14ckhtTG5abU9ITzdENjM4c1BkM1oydEtCdTY3MU1KMVdDT2xmbUpWR214R1UrYmNFeXJ0Z0xZZFBHM1RBMTEwS1l0Z3VKelRZWkNacE9EaHJEU24rU2doUUpBQmlzbVUxL2FtNWdDbzI2SnVNZFVHNXhBaituUFdMOVUiLCJtYWMiOiI3YTZkNmIzNGM2ZGU3NTIyMTkyNzEyNGE0M2I2Zjc2ODQ1ZTgyZjIwM2Q3ZTFhMzhlZTVmYmNhOTVhNmViMWVlIiwidGFnIjoiIn0%3D; laravel_session=eyJpdiI6Im1kUDhqMXM5NjBEVmtMNkxHN2hnUGc9PSIsInZhbHVlIjoiL0VhWjhVenIvbGd4U1gzQVBjdjg2d2dwc014dnNUTW90djNFRWsvYjVSd21FVmZObGlpNHJHVTBBM0JsNzQ3UE10THIzeFVxNGFOYkY2d0RnOTJ5M0REQlFuczdvWXpyZm5WT0k2UlBmUFMxVzRVanBJMWZiRStqYkpYMjQ1VEciLCJtYWMiOiJmNGVjOTI0NmZhZjVmZjUyYTM4MzRkMDc5OWVlNGQzMzAxMjUyNGEwNDBmN2JmMmQxOGVhZjc0ZjQxNzA5MTVkIiwidGFnIjoiIn0%3D");
                         xhr.setRequestHeader('Accept', '*/*');
-                        
-                        xhr.setRequestHeader('Authorization', resp.token_type + " " +this.token);
+
+                        xhr.setRequestHeader('Authorization', resp.token_type + " " + this.token);
                         xhr.send();
                     }
                 });
@@ -69,6 +77,11 @@ export default {
                 xhr.open("POST", loginUrl);
 
                 xhr.send();
+                this.store.email = this.email;
+                this.store.token = this.token;
+                this.store.password = this.password;
+                this.store.name = this.name;
+
             }
         },
         passwordDimenticata() {
