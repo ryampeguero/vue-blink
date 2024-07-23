@@ -1,0 +1,83 @@
+<script>
+import axios from 'axios';
+
+export default {
+    data() {
+        return {
+            flat: [],
+            isLoading: false,
+            imgUrlBase: "http://127.0.0.1:8000/storage",
+        };
+    },
+    created() {
+        const slug = this.$route.params.slug;
+        console.log(slug);
+        axios.get(`http://127.0.0.1:8000/api/info/${slug}`).then((resp) => {
+            console.log(resp.data);
+            this.flat = resp.data;
+            this.isLoading = true;
+
+        });
+    },
+};
+</script>
+
+<template>
+    <div class="info_card_container">
+        <div v-if="isLoading" class="info_card ms_card_img">
+            <div class="card_img_container">
+                <img class="img_container"
+                    :src="flat.img_path ? `${imgUrlBase}/${flat.img_path}` : `../public/img/placeholder-img.png`"
+                    alt="">
+            </div>
+            <div class="p-3">
+                <input type="hidden" :value="`{{ flat.slug }}`">
+                <h1>{{ flat.name }}</h1>
+                <h3>Host: <span>{{ flat.user.name }}</span></h3>
+                <h4><i class="fa-solid fa-person-shelter"></i> Stanze: {{ flat.rooms }}</h4>
+                <h4><i class="fa-solid fa-bed"></i> Letti: {{ flat.beds }}</h4>
+                <h4><i class="fa-solid fa-bath"></i> Bagni: {{ flat.bathrooms }}</h4>
+
+                <form>
+                    <div class="mt-3">
+                        <label for="mex_form" class="form-label">Lascia un messaggio all'Host</label>
+                        <textarea name="mex-form" id="mex_form" cols="30" rows="3"></textarea>
+                    </div>
+                    <div class="d-flex justify-content-end mt-3">
+                        <button class="ms_button" type="submit">Invia</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</template>
+
+<style lang="scss" scoped>
+.card_img_container {
+    max-height: 500px;
+    max-width: 500px;
+}
+
+.info_card_container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../../public/img/background_login.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.img_container {
+    object-fit: cover;
+    border-radius: 1.0rem;
+    height: 100%;
+    width: 100%;
+
+
+}
+
+.info_card {
+    display: flex;
+}
+</style>

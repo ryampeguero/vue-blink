@@ -20,7 +20,6 @@ export default {
 <template>
     <AppHero />
     <AppFirstSection/>
-    <AppCardSection/>
 </template>
 
 <style scoped lang="scss">

@@ -5,6 +5,8 @@ import About from "./pages/About.vue";
 import AdvancedResearch from "./pages/AdvancedResearch.vue";
 import Profile from "./pages/Profile.vue";
 import Login from "./pages/Login.vue";
+import SingleCard from "./pages/SingleCard.vue";
+
 
 export const router = createRouter({
     history: createWebHistory(),
@@ -28,26 +30,32 @@ export const router = createRouter({
             path: "/profile",
             name: "profile",
             component: Profile,
-            meta: { requiresAuth: true }, 
+            meta: { requiresAuth: true },
         },
         {
             path: "/login",
             name: "login",
             component: Login,
         },
+        {
+            path: "/info/:slug",
+            name: "single-card",
+            component: SingleCard,
+        },
+        
     ],
 });
 router.beforeEach((to, from, next) => {
     const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
     const isAuthenticated = !!localStorage.getItem('authToken');
-  
+
     if (requiresAuth && !isAuthenticated) {
         next('/login');
-      } else if (to.path === '/login' && isAuthenticated) {
+    } else if (to.path === '/login' && isAuthenticated) {
         next('/profile');
-      } else {
+    } else {
         next();
-      }
-    });
-  
-  export default router;
+    }
+});
+
+export default router;
