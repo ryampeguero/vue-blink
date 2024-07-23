@@ -1,7 +1,7 @@
 import { reactive } from "vue";
 export const store = reactive({
     token:"",
-    flatArray: [
+    flatArray: [],
     token: "",
     flatArray: [],
     services: [
