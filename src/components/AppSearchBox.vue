@@ -88,7 +88,7 @@ export default {
     <div>
         <input v-model="query" @input="fetchSuggestions" @keydown.down="moveDown" @keydown.up="moveUp"
             @keydown.enter="selectSuggestion" placeholder="Dove vuoi soggiornare?" value="" name="address"
-            class="form-control ms_search_bar" type="text" id="address" autocomplete="off">
+            class="form-control ms_search_bar ms-2" type="text" id="address" autocomplete="off">
 
         <ul v-if="suggestions.length" id="suggestions">
             <li v-for="(suggestion, index) in suggestions" :key="index" :class="{ selected: index === selectedIndex }"
