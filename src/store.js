@@ -1,9 +1,8 @@
 import { reactive } from "vue";
 export const store = reactive({
-    token:"",
-    flatArray: [],
     token: "",
     flatArray: [],
+    token: "",
     services: [
         { id: 1, name: "Wi-Fi", icon: "fa-wifi" },
 
@@ -26,8 +25,9 @@ export const store = reactive({
         { id: 10, name: "Servizio di portineria", icon: "fa-concierge-bell" }
     ],
     checkedIds: [],
+    flatsLoaded: false,
     latitude: "",
     longitude: "",
-email:"",
-password:"",
+    email: "",
+    password: "",
 })

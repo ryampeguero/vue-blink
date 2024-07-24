@@ -42,7 +42,7 @@ export default {
         },
         setEventListener() {
             const checks = document.getElementsByName('services[]')
-            console.log(checks);
+            console.warn(checks);
             checks.forEach((curr) => {
                 curr.addEventListener('click', () => {
                     console.error('clicka');
@@ -94,6 +94,7 @@ export default {
         },
         
         searchAR() {
+            store.flatsLoaded = false;
             // visualizzare dati in console
             console.log('Latitude:', this.store.latitude);
             console.log('Longitude:', this.store.longitude);
@@ -112,15 +113,17 @@ export default {
                     longitude: this.store.longitude,
                     rooms: roomsNumber ? roomsNumber : 0,
                     bathrooms: bathsNumber ? bathsNumber : 0,
-                    services: this.store.checkedIds != [] ? this.store.checkedIds : 0,
+                    services: this.store.checkedIds != '' ? this.store.checkedIds : 0,
                     range: 0
                 }
             })
                 .then(response => {
                     // console.log(response.data.results);
                     //faccio chiamta api al nostro backEnd
+                    
                     this.store.flatArray = response.data.results;
-                    console.log("risultati", response.data);
+                    console.log("risultati", response.data.results);
+                    store.flatsLoaded = !store.flatsLoaded
                     this.setMap();
 
                 })
