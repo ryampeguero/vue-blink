@@ -7,6 +7,8 @@ export default {
             flat: [],
             isLoading: false,
             imgUrlBase: "http://127.0.0.1:8000/storage",
+            messageForUser: "",
+            classuser: "",
         };
     },
     created() {
@@ -31,12 +33,17 @@ export default {
             })
                 .then((response) => {
                     console.log('Message sent successfully:', response.data);
-                    // Puoi aggiungere una notifica per l'utente qui
+                    this.messageForUser = "Messaggio inviato correttamente.";
+                    this.classuser = "alert-success";
                 })
                 .catch((error) => {
                     console.error('Error sending message:', error);
-                    // Puoi gestire l'errore qui
+                    this.messageForUser = "Messaggio non inviato.";
+                    this.classuser = "alert-danger";
                 });
+            this.message = '';
+            this.emailform = '';
+
         }
     }
 
@@ -60,6 +67,10 @@ export default {
                 <h4><i class="fa-solid fa-bath"></i> Bagni: {{ flat.bathrooms }}</h4>
 
                 <form @submit.prevent="sendMessage">
+                    <div v-if="messageForUser" class="alert alert-primary" :class="classuser" role="alert">
+                        {{ messageForUser }}
+                    </div>
+
                     <div class="mt-3">
                         <label for="mex_form" class="form-label">Lascia un messaggio all'Host</label>
                         <textarea v-model="message" name="mex-form" id="mex_form" cols="30" rows="3"></textarea>
