@@ -132,10 +132,10 @@ export default {
     <header>
         <div class="hero flex-column d-flex justify-content-center align-items-center">
             <div class="">
-                <h1 class="title_hero"><span>Scopri la tua</span> prossima meta</h1>
+                <h1 class="title_hero text-center"><span>Scopri la tua</span> prossima meta</h1>
             </div>
             <div class="ms_search_bar mt-5">
-                <div class="p-4 d-flex gap-5 align-items-center">
+                <div class=" d-flex gap-5 align-items-center ">
                     <AppSearchBox />
                     <div>
                         <button @click="search"  class="ms_button search_ico " type="submit">
@@ -147,7 +147,6 @@ export default {
                 </div>
             </div>
         </div>
-        <AppMap />
     </header>
 </template>
 
@@ -159,7 +158,6 @@ export default {
     background-image: url("../../public/img/modern-house.jpg");
     background-repeat: no-repeat;
     min-height: 700px;
-    margin-top: 80px;
 
     .search_ico {
         aspect-ratio: 1;
@@ -167,9 +165,11 @@ export default {
     }
 
     .title_hero {
-        font-size: 5rem;
+        padding: 1rem;
+        font-size: 4rem;
         color: white;
         font-weight: bolder;
+        text-shadow:  rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
     }
 
     .btn_search {

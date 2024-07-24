@@ -12,21 +12,26 @@ export default {
 </script>
 
 <template>
-    <div class="container">
-        <div class="section ms_card_out d-flex row">
-            <div class="txt-white p-5 container_img col-6">
-                <h1>Dalla ricerca alla prenotazione,<br>
-                    tutto in un Blink</h1>
-                <p>
-                    Blink nasce con l’obiettivo di rendere la prenotazione di camere facile, veloce e sicura. Grazie a una tecnologia all'avanguardia e a un team dedicato, ti offriamo un servizio di prenotazione intuitivo e affidabile. Ogni viaggio inizia con un Blink – perché sappiamo quanto il tuo tempo sia prezioso.
-                </p>
+    <div class="container d-flex justify-content-center mt-5 mb-5 ">
+        <div class="row ms_card_section">
+            <div class="col-md-12 col-lg-6 ">
+                <div class="p-4">
+                    <h1>Dalla ricerca alla prenotazione,<br>
+                        tutto in un Blink</h1>
+                    <p>
+                        Blink nasce con l’obiettivo di rendere la prenotazione di camere facile, veloce e sicura.
+                        Grazie a una tecnologia all'avanguardia e a un team dedicato, ti offriamo un servizio di
+                        prenotazione intuitivo e affidabile. Ogni viaggio inizia con un Blink – perché sappiamo
+                        quanto il tuo tempo sia prezioso.
+                    </p>
+                </div>
             </div>
-            <div class="container_img col-6">
-                <img class="img_girl" src="../../public/img/globe-girl-1.png" alt="">
+            <div class="col-md-12 col-lg-6 d-flex justify-content-center">
+                <div>
+                    <img class="img_girl" src="../../public/img/globe-girl-1.png" alt="">
+                </div>
             </div>
         </div>
-
-
     </div>
 </template>
 
@@ -39,16 +44,13 @@ export default {
     margin: 100px 0 40px 0;
 }
 
-.container_img {
-    position: relative;
-    width: 50%;
-}
 
 .img_girl {
-    position: absolute;
-    bottom: -8px;
-    left: 25%;
-    height: 500px;
-
+    max-width: 500px;
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
 }
+
+
 </style>

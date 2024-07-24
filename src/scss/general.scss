@@ -156,12 +156,10 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 0.5rem;
     color: $primary-color;
-    padding: 1.5rem;
+    padding: 1rem;
     background-color: white;
     border-radius: 999em 999em 999em 999em;
-    position: relative;
     max-width: 1000px;
 }
 
@@ -194,6 +192,17 @@ nav {
     margin: 0;
     max-width: 800px;
     background-color: white !important;
+}
+
+.ms_card_section {
+    box-shadow: $shadow2;
+    border-radius: 1.0rem;
+    color: $primary-color;
+    padding: 0;
+    margin: 0;
+    max-width: 800px;
+    background-color: $primary-color !important;
+    color: white;
 }
 
 .ms_card_out {
@@ -347,6 +356,10 @@ nav {
 
 .ms_border_inner {
     border-radius: 0.5rem;
+}
+
+.ms_border_circle {
+    border-radius: 999em 999em 999em 999em;
 }
 
 @import "./partials/queries";

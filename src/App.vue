@@ -2,7 +2,6 @@
 import AppHeader from './components/AppHeader.vue'
 import AppFooter from './components/AppFooter.vue'
 
-
 export default {
     components: {
         AppHeader,
@@ -17,17 +16,16 @@ export default {
 }
 </script>
 
+
+
 <template>
     <div class="prime">
-        <AppHeader />
+        <AppHeader/>
         <router-view></router-view>
             <AppFooter />
     </div>
 </template>
 
 <style lang="scss">
-.prime {
-    max-width: 100%;
-    overflow-x: hidden;
-}
+
 </style>

@@ -1,10 +1,12 @@
-import { createApp } from 'vue'
-import './scss/general.scss'
-import App from './App.vue'
-import {router} from "./router.js"
+import { createApp } from 'vue';
+import './scss/general.scss';
+import App from './App.vue';
+import {router} from "./router.js";
+import "bootstrap/dist/css/bootstrap.min.css";
+import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.js';
 
 
-createApp(App).use(router).mount('#app')
+createApp(App).use(router,bootstrap).mount('#app')
 
 function myInputNumber(inputNumberContainer) {
     // console.log(inputNumber.querySelector('#input_value'));

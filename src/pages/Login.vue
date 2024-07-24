@@ -30,7 +30,6 @@ export default {
     background-size: cover;
     background-repeat: no-repeat;
     min-height: 800px;
-    margin-top: 80px;
     scroll-behavior: smooth;
     height: 100vh;
 }
