@@ -1,6 +1,6 @@
 <script>
 import { store } from '../store';
-
+import axios from 'axios';
 
 export default {
     data() {
@@ -16,6 +16,20 @@ export default {
         showArray() {
             if (store.flatsLoaded)
                 console.log("array appart", store.flatArray);
+        },
+        sendIpAddress(id) {
+            console.log(id);
+            axios.get("https://api.ipify.org?format=json")
+                .then((response) => {
+                    const ip = response.data.ip;
+                    axios.post('http://127.0.0.1:8000/api/stats/view', {
+                        ip: ip,
+                        flatId: id
+                    }).then((resp) => {
+                        console.log(resp);
+                    })
+                })
+                .catch((error) => console.error(error));
         }
 
     }
@@ -25,7 +39,7 @@ export default {
 </script>
 
 <template>
-    <div v-for="flat in store.flatArray" class="col-sm-12 mb-5 col-md-12 col-lg-5 ms_backC_tertiary p-0 ms_border">
+    <div v-for="flat in store.flatArray" class="col-sm-12 mb-5 col-md-12 col-lg-5 ms_backC_tertiary p-0 ms_border"  @click="sendIpAddress(flat.id)">
         <router-link :to="{ name: 'single-card', params: { slug: flat.slug } }"
             class="ms_card_img mt-5 text-decoration-none ">
             <img class="img_container"
