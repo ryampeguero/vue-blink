@@ -26,27 +26,22 @@ export default {
                 console.log("array appart", this.store.flatArray);
             }
         },
-
-            if (store.flatsLoaded)
-                console.log("array appart", store.flatArray);
-        },
-        sendIpAddress(id) {
-            console.log(id);
-            axios.get("https://api.ipify.org?format=json")
-                .then((response) => {
-                    const ip = response.data.ip;
-                    axios.post('http://127.0.0.1:8000/api/stats/view', {
-                        ip: ip,
-                        flatId: id
-                    }).then((resp) => {
-                        console.log(resp);
-                    })
-                })
-                .catch((error) => console.error(error));
-        }
-
-
     },
+    sendIpAddress(id) {
+        console.log(id);
+        axios.get("https://api.ipify.org?format=json")
+            .then((response) => {
+                const ip = response.data.ip;
+                axios.post('http://127.0.0.1:8000/api/stats/view', {
+                    ip: ip,
+                    flatId: id
+                }).then((resp) => {
+                    console.log(resp);
+                })
+            })
+            .catch((error) => console.error(error));
+    }
+
 
 }
 
@@ -54,7 +49,8 @@ export default {
 
 <template>
 
-    <div v-if="isPremium == false" v-for="flat in isPremium ? store.flatArrayPremium : store.flatArray" class="col-sm-12 mb-5 col-md-12 col-lg-5 ms_backC_tertiary p-0 ms_border"  @click="sendIpAddress(flat.id)">
+    <div v-if="isPremium == false" v-for="flat in isPremium ? store.flatArrayPremium : store.flatArray"
+        class="col-sm-12 mb-5 col-md-12 col-lg-5 ms_backC_tertiary p-0 ms_border" @click="sendIpAddress(flat.id)">
         <router-link :to="{ name: 'single-card', params: { slug: flat.slug } }"
             class="ms_card_img mt-5 text-decoration-none">
             <img class="img_container"
@@ -74,7 +70,7 @@ export default {
         'border border-5 rounded-4 border-success': flat.receipts[0].plan_id == 1,
         'border border-5 rounded-4 border-warning': flat.receipts[0].plan_id == 2,
         'border border-5 rounded-4 border-danger': flat.receipts[0].plan_id == 3
-    }" class="col-sm-12 mb-5 col-md-12 col-lg-5 ms_backC_tertiary p-0 ms_border"  @click="sendIpAddress(flat.id)">
+    }" class="col-sm-12 mb-5 col-md-12 col-lg-5 ms_backC_tertiary p-0 ms_border" @click="sendIpAddress(flat.id)">
 
         <router-link :to="{ name: 'single-card', params: { slug: flat.slug } }"
             class="ms_card_img mt-5 text-decoration-none ">
