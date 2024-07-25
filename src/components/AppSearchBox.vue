@@ -71,8 +71,8 @@ export default {
             })
                 .then(response => {
                     console.log(response.data.results);
-                    //faccio chiamta api al nostro backEnd
-                    
+                    this.searchPremium = true;
+
                 })
                 .catch(error => {
                     console.error('Errore:', error);

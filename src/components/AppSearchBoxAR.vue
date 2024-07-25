@@ -51,21 +51,21 @@ export default {
                 })
             })
         },
-        
+
         fetchSuggestions() {
             if (this.query.length > 2) {
                 fetch(`https://api.tomtom.com/search/2/search/${this.query}.json?key=${this.apiKey}&typeahead=true&limit=5`)
-                .then(response => response.json())
-                .then(data => {
-                    this.suggestions = data.results;
-                    this.selectedIndex = -1;
-                })
-                .catch(error => console.error('Errore:', error));
+                    .then(response => response.json())
+                    .then(data => {
+                        this.suggestions = data.results;
+                        this.selectedIndex = -1;
+                    })
+                    .catch(error => console.error('Errore:', error));
             } else {
                 this.suggestions = [];
             }
         },
-        
+
         chooseSuggestion(suggestion) {
             console.log('Suggestion chosen:', suggestion);
             this.query = suggestion.address.freeformAddress;
@@ -75,7 +75,7 @@ export default {
             this.$emit('update:latitude', this.latitude);
             this.$emit('update:longitude', this.longitude);
         },
-        
+
         moveDown() {
             if (this.selectedIndex < this.suggestions.length - 1) {
                 this.selectedIndex++;
@@ -87,22 +87,22 @@ export default {
                 this.selectedIndex--;
             }
         },
-        
+
         selectSuggestion() {
             if (this.selectedIndex > -1) {
                 this.chooseSuggestion(this.suggestions[this.selectedIndex]);
             }
         },
-        
+
         searchAR() {
             store.flatsLoaded = false;
             // visualizzare dati in console
             console.log('Latitude:', this.store.latitude);
             console.log('Longitude:', this.store.longitude);
-            
+
             const roomsNumber = document.getElementById('rooms').value > 0 ? document.getElementById('rooms').value : 1;
             const bathsNumber = document.getElementById('bathrooms').value > 0 ? document.getElementById('rooms').value : 1;
-            
+
             console.log("stanze", roomsNumber);
             console.log("bagni", bathsNumber);
             // console.log('servizi', this.checkedIds);
@@ -126,6 +126,8 @@ export default {
                     store.flatArray = response.data.results;
                     console.log("ciao", store.flatArray);
                     this.setMap();
+                    this.searchPremium();
+
 
                 })
                 .catch(error => {
@@ -167,8 +169,31 @@ export default {
                 this.services = resp.data.results;
 
             })
-        }
+        },
+        searchPremium() {
+            this.store.flatsLoaded = false;
+            console.log('Latitude:', this.store.latitude);
+            console.log('Longitude:', this.store.longitude);
+
+            axios.get('http://127.0.0.1:8000/api/flats/searchpremium', {
+                params: {
+                    latitude: this.store.latitude,
+                    longitude: this.store.longitude,
+                    range: 0
+                }
+            })
+                .then(response => {
+                    this.store.flatArrayPremium = response.data.results;
+                    console.log("Risultati:", response.data.results);
+                })
+                .catch(error => {
+                    console.error('Errore:', error);
+                }).finally(() => {
+                    this.store.flatsLoaded = true;
+                });
+        },
     },
+
 };
 
 </script>

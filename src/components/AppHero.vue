@@ -26,6 +26,30 @@ export default {
 
     methods: {
 
+
+        searchPremium() {
+            this.store.flatsLoaded = false;
+            console.log('Latitude:', this.store.latitude);
+            console.log('Longitude:', this.store.longitude);
+
+            axios.get('http://127.0.0.1:8000/api/flats/searchpremium', {
+                params: {
+                    latitude: this.store.latitude,
+                    longitude: this.store.longitude,
+                    range: 0
+                }
+            })
+                .then(response => {
+                    this.store.flatArrayPremium = response.data.results;
+                    console.log("Risultati:", response.data.results);
+                })
+                .catch(error => {
+                    console.error('Errore:', error);
+                }).finally(() => {
+                    this.store.flatsLoaded = true;
+                });
+        },
+
         fetchSuggestions() {
             if (this.query.length > 2) {
                 fetch(`https://api.tomtom.com/search/2/search/${this.query}.json?key=${this.apiKey}&typeahead=true&limit=5`)
@@ -67,14 +91,15 @@ export default {
         },
 
         redirectToAdvanceReserch() {
-            // this.$router.push("/ricerca-avanzata");
-            window.location.href = "/ricerca-avanzata";
-            console.log("ciaoooooo");
+            this.$router.push({
+                path: '/ricerca-avanzata',
+                query: { isPremium: true }
+            });
         },
 
         search() {
-            localStorage.setItem("latitude",this.store.latitude);
-            localStorage.setItem("longitude",this.store.longitude);
+            localStorage.setItem("latitude", this.store.latitude);
+            localStorage.setItem("longitude", this.store.longitude);
             // visualizzare dati in console
             console.log('Latitude:', this.store.latitude);
             console.log('Longitude:', this.store.longitude);
@@ -90,13 +115,15 @@ export default {
                     this.store.flatArray = response.data.results;
                     console.log(response.data.results);
                     this.setMap();
+                    this.searchPremium();
                     //faccio chiamta api al nostro backEnd
                 })
                 .catch(error => {
                     console.error('Errore:', error);
                 });
 
-                this.redirectToAdvanceReserch();
+
+            this.redirectToAdvanceReserch();
         },
 
         setMap() {
@@ -138,7 +165,7 @@ export default {
                 <div class=" d-flex gap-5 align-items-center ">
                     <AppSearchBox />
                     <div>
-                        <button @click="search"  class="ms_button search_ico " type="submit">
+                        <button @click="search();" class="ms_button search_ico " type="submit">
 
                             <img class="btn_search" src="../../public/Icons/search.svg" alt="">
                         </button>
@@ -169,7 +196,7 @@ export default {
         font-size: 4rem;
         color: white;
         font-weight: bolder;
-        text-shadow:  rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+        text-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
     }
 
     .btn_search {
