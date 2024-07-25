@@ -163,6 +163,18 @@ nav {
     max-width: 1000px;
 }
 
+.ms_search_bar_ar {
+    box-shadow: $shadow2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $primary-color;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 1.5rem;
+    max-width: 1000px;
+}
+
 .ms_search_bar_in {
     display: flex;
     justify-content: center;
@@ -196,7 +208,7 @@ nav {
 
 .ms_card_section {
     box-shadow: $shadow2;
-    border-radius: 1.0rem;
+    border-radius: 1.5rem;
     color: $primary-color;
     padding: 0;
     margin: 0;
@@ -227,7 +239,7 @@ nav {
 }
 
 .text_searchbar {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: bold;
     color: $primary-color;
 }

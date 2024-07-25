@@ -52,32 +52,34 @@ export default {
 
 <template>
     <div class="info_card_container">
-        <div v-if="isLoading" class="info_card ms_card_img">
-            <div class="card_img_container">
+        <div v-if="isLoading" class="info_card d-md-flex d-block  ms_card_img">
+            <div class="">
                 <img class="img_container"
                     :src="flat.img_path ? `${imgUrlBase}/${flat.img_path}` : `../public/img/placeholder-img.png`"
                     alt="">
             </div>
-            <div class="p-3">
-                <input type="hidden" :value="`{{ flat.slug }}`">
-                <h1>{{ flat.name }}</h1>
-                <h3>Host: <span>{{ flat.user.name }}</span></h3>
-                <h4><i class="fa-solid fa-person-shelter"></i> Stanze: {{ flat.rooms }}</h4>
-                <h4><i class="fa-solid fa-bed"></i> Letti: {{ flat.beds }}</h4>
-                <h4><i class="fa-solid fa-bath"></i> Bagni: {{ flat.bathrooms }}</h4>
+            <div class="p-3 ">
+                <div class="ms_card">
+                    <input type="hidden" :value="`{{ flat.slug }}`">
+                    <h1>{{ flat.name }}</h1>
+                    <h3>Host: <span>{{ flat.user.name }}</span></h3>
+                    <h4><i class="fa-solid fa-person-shelter"></i> Stanze: {{ flat.rooms }}</h4>
+                    <h4><i class="fa-solid fa-bed"></i> Letti: {{ flat.beds }}</h4>
+                    <h4><i class="fa-solid fa-bath"></i> Bagni: {{ flat.bathrooms }}</h4>
+                </div>
 
-                <form @submit.prevent="sendMessage">
+                <form @submit.prevent="sendMessage" class="ms_card p-3 mt-3">
                     <div v-if="messageForUser" class="alert alert-primary" :class="classuser" role="alert">
                         {{ messageForUser }}
                     </div>
 
-                    <div class="mt-3">
+                    <div class="mt-3 d-flex flex-column ">
                         <label for="mex_form" class="form-label">Lascia un messaggio all'Host</label>
-                        <textarea v-model="message" name="mex-form" id="mex_form" cols="30" rows="3"></textarea>
+                        <textarea v-model="message" class="ms_card" name="mex-form" id="mex_form" cols="30" rows="3"></textarea>
                     </div>
-                    <div class="mt-3">
+                    <div class="mt-3 d-flex flex-column">
                         <label for="emailform" class="form-label">Inserisci la tua email</label>
-                        <input type="email" v-model="emailform" name="emailform" id="emailform" cols="30"
+                        <input type="email" v-model="emailform" class="ms_card" name="emailform" id="emailform" cols="30"
                             rows="3"></input>
                     </div>
                     <div class="d-flex justify-content-end mt-3">
@@ -90,10 +92,7 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-.card_img_container {
-    max-height: 500px;
-    max-width: 500px;
-}
+
 
 .info_card_container {
     height: 100vh;
@@ -103,6 +102,7 @@ export default {
     background-image: url(../../public/img/background_login.jpg);
     background-repeat: no-repeat;
     background-size: 100% 100%;
+
 }
 
 .img_container {
