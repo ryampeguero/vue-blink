@@ -31,8 +31,8 @@ export default {
 <template>
     <div class="bg ms_backC_card pb-5">
         <div class="container mt-5 mb-5">
-            <h1 class="pt-5 result">RISULTATI RICERCA</h1>
-            <div class="row d-flex justify-content-between">
+            <h1 class="pt-5 result mb-4">RISULTATI RICERCA</h1>
+            <div class="row d-flex justify-content-between column-gap-3 flex-wrap">
                 <AppFlatCard />
 
             </div>
@@ -55,7 +55,4 @@ export default {
     font-weight: bolder;
 }
 
-.bg {
-    margin-top: 100px;
-}
 </style>

@@ -137,7 +137,7 @@ created() {
 
 <template>
     <header>
-        <div class="hero flex-column d-flex justify-content-center align-items-center">
+        <div class="hero d-flex flex-column justify-content-center align-items-center">
             <div class="">
                 <h1 class="title_hero">Scopri la tua prossima meta</h1>
             </div>
