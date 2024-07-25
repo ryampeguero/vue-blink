@@ -8,15 +8,11 @@ export default {
                     routeName: "home"
                 },
                 {
-                    title: "ABOUT",
-                    routeName: "about"
-                },
-                {
-                    title: "LOGIN",
+                    title: "Login",
                     routeName: "profile"
                 },
                 {
-                    title: "REGISTRAZIONE",
+                    title: "Registrazione",
                     routeName: "register"
                 },
             ]
@@ -49,7 +45,7 @@ export default {
             </div>
         </ul> -->
 
-    <nav class="navbar navbar-expand-lg fixed-top bg-white" aria-label="Fifth navbar example">
+    <nav class="navbar navbar-expand-lg fixed-top bg-white py-3" aria-label="Fifth navbar example">
 
         <div class="header">
             <div class="prova">
@@ -66,10 +62,15 @@ export default {
             </div>
             <div class="prova d-flex justify-content-center">
                 <div class="collapse navbar-collapse me-4" id="navbarsExample05">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li v-for="item in menu">
-                            <router-link :to="{ name: item.routeName }" class="nav-link p-3">{{ item.title
-                                }}</router-link>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-2" id="login">
+                        <li v-for="(item, index) in menu" class="">
+                            <router-link :to="{ name: item.routeName }" class="nav-link p-3 ">
+                                <div class="d-flex">
+                                    {{ item.title }} <span v-if="index == menu.length - 1">
+                                        <img class="icon_redi" src="../../public/Icons/sign_in.svg" alt="">
+                                    </span>
+                                </div>
+                            </router-link>
                         </li>
                     </ul>
                 </div>
@@ -84,11 +85,65 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@use"../scss/partials/_variables" as*;
+
+
+
+#login {
+
+    font-weight: bold;
+
+    li:last-child {
+        background-color: $secondary-color;
+        color: white !important;
+        margin: 0 10px;
+        border-radius: 999em 999em 999em 999em;
+        box-shadow: $shadow2;
+
+        .router-link-active {
+            color: white;
+            font-weight: bolder;
+
+            .icon_redi {
+                filter: invert(100%) sepia(2%) saturate(310%) hue-rotate(342deg) brightness(118%) contrast(100%);
+            }
+        }
+
+    }
+
+    .icon_redi {
+        min-height: 100%;
+        min-width: 100%;
+        max-width: 10px;
+        max-height: 10px;
+        color: $primary-color;
+        margin: 0 10px 0 5px;
+
+
+    }
+
+    li:nth-child(2) {
+        border: 1px solid $primary-color;
+        margin: 0 10px;
+        border-radius: 999em 999em 999em 999em;
+        box-shadow: $shadow2;
+
+        .router-link-active {
+                    color: #FF6827;
+                    font-weight: bolder;
+                }
+                
+    }
+
+}
+
 .navbar {
     min-width: 100vw !important;
+    min-height: 80px;
+    padding: 0;
 
     .logo {
-        max-height: 80px;
+        max-height: 70px;
         min-height: 100%;
     }
 
@@ -98,6 +153,13 @@ export default {
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
+        min-height: 80px;
+
+        .navbar-brand {
+            min-width: 100%;
+            min-height: 100%;
+            padding: 0;
+        }
 
         .prova_btn {
             width: 50%;
@@ -127,29 +189,13 @@ export default {
 
                 .router-link-active {
                     color: #FF6827;
-                    font-weight: 600;
+                    font-weight: bolder;
                 }
             }
 
         }
     }
 
-
-
-}
-
-.header-menu {
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: space-around;
-    height: 80px;
-    max-height: 80px;
-    position: fixed;
-    width: 100%;
-    z-index: 2;
-    background-color: white;
-    box-shadow: 2px 2px 10px #888888;
 
 
 }

@@ -174,8 +174,8 @@ export default {
 
 <template>
 
-    <div class="ms_search_bar mt-5 px-5">
-        <div class=" d-flex gap-5 align-items-center ">
+    <div class="ms_search_bar_ar mt-5 p-4">
+        <div class="d-flex gap-4 align-items-center">
             <div>
                 <div class="">
                     <label class="text_searchbar ps-3" for="address">Dove<span class="orange">*</span></label>
@@ -195,19 +195,19 @@ export default {
                     <input type="hidden" name="longitude" :value="longitude">
                 </div>
                 <div>
-                    <div class="d-flex gap-3">
-                        <div class="">
+                    <div class="d-flex gap-3 mt-4">
+                        <div class="w-100">
                             <label class="text_searchbar ps-3" for="rooms">N° Stanze</label>
                             <input id="rooms" name="rooms" class="form-control ms_search_bar_in" type="number" value=""
                                 placeholder="Stanze">
                         </div>
-                        <div class="">
+                        <div class="w-100">
                             <label class="text_searchbar ps-3" for="bathrooms">N° Bagni</label>
                             <input id="bathrooms" name="bathrooms" class="form-control ms_search_bar_in" type="number"
                                 value="" placeholder="Bagni">
                         </div>
                     </div>
-                    <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                    <div class="btn-group gap-3 mt-4 group_icons" role="group" aria-label="Basic checkbox toggle button group">
                         <div v-for="service in services" :title="service['name']" class="prova">
                             <input :id="service['id']" type="checkbox" class="btn-check" :value="service['id']"
                                 name="services[]">
@@ -231,6 +231,11 @@ export default {
 <style scoped lang="scss">
 @use"../scss/partials/_variables" as*;
 
+
+.group_icons {
+    display: flex;
+    flex-wrap: wrap;
+}
 
 .search_ico {
     aspect-ratio: 1;
@@ -266,5 +271,9 @@ export default {
 #suggestions li:hover,
 #suggestions li.selected {
     background-color: #f0f0f0;
+}
+
+.orange {
+    color: $secondary-color;
 }
 </style>

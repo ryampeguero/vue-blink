@@ -101,7 +101,14 @@ export default {
     <form  @submit.prevent="gestisciInvio">
         <div class="ms_card_out mt-5 container d-flex">
             <div class="row">
-                <div class="col-7 p-3 ps-4">
+
+                <div class="col-sm-12 col-md-6">
+                    <div class="box p-3">
+                        <img class="box ms_border_inner" src="../../public/img/login_img.png" alt="">
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-12 p-3">
                     <div class="d-flex align-items-center mb-3">
                         <div class="ico">
                             <img src="../../public/Icons/blink-ico.svg" alt="">
@@ -152,11 +159,6 @@ export default {
                                 </a>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-5">
-                    <div class="box p-3">
-                        <img class="box ms_border_inner" src="../../public/img/login_img.png" alt="">
                     </div>
                 </div>
             </div>
