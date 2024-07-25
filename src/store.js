@@ -30,4 +30,7 @@ export const store = reactive({
     longitude: "",
     email: "",
     password: "",
+    flatArrayPremium:[],
+    searchPremium:false,
+
 })
