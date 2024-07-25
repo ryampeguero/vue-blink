@@ -39,6 +39,7 @@ export default {
 </script>
 
 <template>
+    
     <div v-for="flat in store.flatArray" class="col-sm-12 mb-5 col-md-12 col-lg-5 ms_backC_tertiary p-0 ms_border"  @click="sendIpAddress(flat.id)">
         <router-link :to="{ name: 'single-card', params: { slug: flat.slug } }"
             class="ms_card_img mt-5 text-decoration-none ">
@@ -47,7 +48,6 @@ export default {
             <div class="p-3 p-4">
                 <input type="hidden" :value="`{{ flat.slug }}`">
                 <h1 class="title_flat">{{ flat.name }}</h1>
-                <h3>Host: <span>{{ flat.user.name }}</span></h3>
                 <h4><i class="fa-solid fa-person-shelter"></i> Stanze: {{ flat.rooms }}</h4>
                 <h4><i class="fa-solid fa-bed"></i> Letti: {{ flat.beds }}</h4>
                 <h4><i class="fa-solid fa-bath"></i> Bagni: {{ flat.bathrooms }}</h4>

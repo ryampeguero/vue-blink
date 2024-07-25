@@ -31,6 +31,7 @@ export default {
     },
     methods: {
         areChecked() {
+            // console.log('prova');
             const checks = document.getElementsByName('services[]')
             this.store.checkedIds = [];
             checks.forEach((curr) => {
@@ -120,10 +121,10 @@ export default {
                 .then(response => {
                     // console.log(response.data.results);
                     //faccio chiamta api al nostro backEnd
-                    
-                    this.store.flatArray = response.data.results;
                     console.log("risultati", response.data.results);
-                    store.flatsLoaded = !store.flatsLoaded
+                    store.flatsLoaded = true;
+                    store.flatArray = response.data.results;
+                    console.log("ciao", store.flatArray);
                     this.setMap();
 
                 })

@@ -137,9 +137,9 @@ created() {
 
 <template>
     <header>
-        <div class="hero flex-column d-flex justify-content-center align-items-center">
-            <div class="mt-5">
-                <h1 class="title_hero text-center"><span>Scopri la tua</span> prossima meta</h1>
+        <div class="hero d-flex flex-column justify-content-center align-items-center">
+            <div class="">
+                <h1 class="title_hero">Scopri la tua prossima meta</h1>
             </div>
             <AppSearchBoxAR />
         </div>
@@ -158,7 +158,7 @@ created() {
     background-image: url("../../public/img/modern-house.jpg");
     background-repeat: no-repeat;
     min-height: 700px;
-    margin-top: 112px;
+    margin-top: 80px;
 
     .search_ico {
         aspect-ratio: 1;
