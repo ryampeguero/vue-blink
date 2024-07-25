@@ -34,6 +34,7 @@ export default {
             <h1 class="pt-5 result mb-4">RISULTATI RICERCA</h1>
             <div class="row d-flex justify-content-between column-gap-3 flex-wrap">
                 <AppFlatCard />
+
             </div>
         </div>
     </div>
