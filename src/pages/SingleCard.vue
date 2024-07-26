@@ -108,7 +108,6 @@ export default {
     background-image: url(../../public/img/background_login.jpg);
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    margin-top: 112px;
 }
 
 .img_container {

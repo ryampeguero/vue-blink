@@ -51,10 +51,10 @@ export default {
 </script>
 
 <template>
-    <div class="bg ms_backC_card pb-5">
+    <div class="bg ms_backC_card_spons pb-5 ">
         <div class="container">
-            <h1 class="pt-5 result mb-4">Appartamenti sponsorizzati</h1>
-            <div class="row d-flex justify-content-between column-gap-3 flex-wrap">
+            <h1 class="pt-5 result mb-4 text-white text-center mb-5">Appartamenti sponsorizzati</h1>
+            <div class="row d-flex justify-content-between flex-wrap">
                 <AppFlatCard :isPremium=true />
             </div>
         </div>

@@ -158,14 +158,13 @@ created() {
     background-image: url("../../public/img/modern-house.jpg");
     background-repeat: no-repeat;
     min-height: 700px;
-    margin-top: 80px;
-
     .search_ico {
         aspect-ratio: 1;
         border-radius: 50%;
     }
 
     .title_hero {
+        margin-top: 2rem;
         font-size: 5rem;
         color: white;
         font-weight: bolder;

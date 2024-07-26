@@ -52,7 +52,7 @@ export default {
     <div v-if="isPremium == false" v-for="flat in isPremium ? store.flatArrayPremium : store.flatArray"
         class="col-sm-12 mb-5 col-md-12 col-lg-5 ms_backC_tertiary p-0 ms_border" @click="sendIpAddress(flat.id)">
         <router-link :to="{ name: 'single-card', params: { slug: flat.slug } }"
-            class="ms_card_img mt-5 text-decoration-none">
+            class="ms_card_img mt-5 text-decoration-none ">
             <img class="img_container"
                 :src="flat.img_path ? `${imgUrlBase}/${flat.img_path}` : `public/img/placeholder-img.png`" alt="">
             <div class="p-3">
@@ -67,9 +67,9 @@ export default {
 
     </div>
     <div v-else v-for="flat in isPremium ? store.flatArrayPremium : store.flatArray" :class="{
-        'border border-5 rounded-4 border-success': flat.receipts[0].plan_id == 1,
-        'border border-5 rounded-4 border-warning': flat.receipts[0].plan_id == 2,
-        'border border-5 rounded-4 border-danger': flat.receipts[0].plan_id == 3
+        'border_basic': flat.receipts[0].plan_id == 1,
+        'border_intermade': flat.receipts[0].plan_id == 2,
+        'border_premium': flat.receipts[0].plan_id == 3
     }" class="col-sm-12 mb-5 col-md-12 col-lg-5 ms_backC_tertiary p-0 ms_border" @click="sendIpAddress(flat.id)">
 
         <router-link :to="{ name: 'single-card', params: { slug: flat.slug } }"
@@ -95,6 +95,20 @@ export default {
     max-width: 100%;
     aspect-ratio: 1;
 }
+
+.border_premium{
+    box-shadow: rgb(255, 104, 39, 0.4) 0px 5px,  rgb(255, 104, 39, 0.3) 0px 10px, rgb(255, 104, 39, 0.2) 0px 15px, rgb(255, 104, 39, 0.1) 0px 20px, rgb(255, 104, 39, 0.05) 0px 25px;
+}
+
+.border_intermade {
+    box-shadow: rgb(26, 36, 50, 0.4) 0px 5px,  rgb(26, 36, 50, 0.3) 0px 10px, rgb(26, 36, 50, 0.2) 0px 15px, rgb(26, 36, 50, 0.1) 0px 20px, rgb(26, 36, 50, 0.05) 0px 25px;
+}
+
+.border_basic {
+    box-shadow: rgb(223, 234, 248, 0.4) 0px 5px,  rgb(223, 234, 248, 0.3) 0px 10px, rgb(223, 234, 248, 0.2) 0px 15px, rgb(223, 234, 248, 0.1) 0px 20px, rgb(223, 234, 248, 0.05) 0px 25px;
+}
+
+
 
 .title_flat {
     font-size: 2rem;

@@ -28,4 +28,7 @@ export default {
 
 <style lang="scss">
 
+.prime {
+    margin-top: 112px;
+}
 </style>
