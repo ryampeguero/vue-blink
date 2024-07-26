@@ -8,6 +8,7 @@ export default {
             store,
             imgUrlBase: 'http://127.0.0.1:8000/storage',
             flats: "",
+            flatId:'',
         };
 
     },
@@ -27,20 +28,6 @@ export default {
             }
         },
     },
-    sendIpAddress(id) {
-        console.log(id);
-        axios.get("https://api.ipify.org?format=json")
-            .then((response) => {
-                const ip = response.data.ip;
-                axios.post('http://127.0.0.1:8000/api/stats/view', {
-                    ip: ip,
-                    flatId: id
-                }).then((resp) => {
-                    console.log(resp);
-                })
-            })
-            .catch((error) => console.error(error));
-    }
 
 
 }
@@ -50,9 +37,10 @@ export default {
 <template>
 
     <div v-if="isPremium == false" v-for="flat in isPremium ? store.flatArrayPremium : store.flatArray"
-        class="col-sm-12 mb-5 col-md-12 col-lg-5 ms_backC_tertiary p-0 ms_border" @click="sendIpAddress(flat.id)">
+        class="col-sm-12 mb-5 col-md-12 col-lg-5 ms_backC_tertiary p-0 ms_border" >
         <router-link :to="{ name: 'single-card', params: { slug: flat.slug } }"
             class="ms_card_img mt-5 text-decoration-none ">
+            <input id="flatId" type="hidden" name="" :value="flat.id">
             <img class="img_container"
                 :src="flat.img_path ? `${imgUrlBase}/${flat.img_path}` : `public/img/placeholder-img.png`" alt="">
             <div class="p-3">
@@ -69,10 +57,11 @@ export default {
         'border_basic': flat.receipts[0].plan_id == 1,
         'border_intermade': flat.receipts[0].plan_id == 2,
         'border_premium': flat.receipts[0].plan_id == 3
-    }" class="col-sm-12 mb-5 col-md-12 col-lg-5 ms_backC_tertiary p-0 ms_border" @click="sendIpAddress(flat.id)">
+    }" class="col-sm-12 mb-5 col-md-12 col-lg-5 ms_backC_tertiary p-0 ms_border" >
 
         <router-link :to="{ name: 'single-card', params: { slug: flat.slug } }"
-            class="ms_card_img mt-5 text-decoration-none ">
+            class="ms_card_img mt-5 text-decoration-none">
+
             <img class="img_container"
                 :src="flat.img_path ? `${imgUrlBase}/${flat.img_path}` : `public/img/placeholder-img.png`" alt="">
             <div class="p-3 p-4">

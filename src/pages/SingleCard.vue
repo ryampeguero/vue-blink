@@ -19,10 +19,10 @@ export default {
                 message: this.message,
                 id_flat: this.flat.id,
                 email: this.emailform,
-                
+
             })
-            .then((response) => {
-                console.log('Message sent successfully:', response.data);
+                .then((response) => {
+                    console.log('Message sent successfully:', response.data);
                     this.messageForUser = "Messaggio inviato correttamente.";
                     this.classuser = "alert-success";
                 })
@@ -31,28 +31,44 @@ export default {
                     this.messageForUser = "Messaggio non inviato.";
                     this.classuser = "alert-danger";
                 });
-                this.message = '';
-                this.emailform = '';
-                
-            },
-            
-            scrollToTOP() {
-                window.scrollTo(0, 0);
-            },
-            
+            this.message = '';
+            this.emailform = '';
+
         },
 
-        created() {
-            const slug = this.$route.params.slug;
-            console.log(slug);
-            axios.get(`http://127.0.0.1:8000/api/info/${slug}`).then((resp) => {
-                console.log(resp.data);
-                this.flat = resp.data;
-                this.isLoading = true;
-    
-                this.scrollToTOP();
-            });
+        scrollToTOP() {
+            window.scrollTo(0, 0);
         },
+
+        sendIpAddress(id) {
+            // const id = document.getElementById('flatId').value;
+            console.log(id);
+            axios.get("https://api.ipify.org?format=json")
+                .then((response) => {
+                    const ip = response.data.ip;
+                    axios.post('http://127.0.0.1:8000/api/stats/view', {
+                        ip: ip,
+                        flatId: id
+                    }).then((resp) => {
+                        console.log(resp);
+                    })
+                })
+                .catch((error) => console.error(error));
+        }
+
+    },
+
+    created() {
+        this.scrollToTOP();
+        const slug = this.$route.params.slug;
+        console.log(slug);
+        axios.get(`http://127.0.0.1:8000/api/info/${slug}`).then((resp) => {
+            console.log(resp.data);
+            this.flat = resp.data;
+            this.isLoading = true;
+            this.sendIpAddress(resp.data.id);
+        });
+    },
 
 };
 </script>
@@ -68,6 +84,7 @@ export default {
             <div class="p-3 ">
                 <div class="ms_card">
                     <input type="hidden" :value="`{{ flat.slug }}`">
+                    <input id="flatId" type="hidden" name="" :value="flat.id">
                     <h1>{{ flat.name }}</h1>
                     <h3>Host: <span>{{ flat.user.name }}</span></h3>
                     <h4><i class="fa-solid fa-person-shelter"></i> Stanze: {{ flat.rooms }}</h4>
