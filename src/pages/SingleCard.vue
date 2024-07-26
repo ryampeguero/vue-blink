@@ -29,11 +29,14 @@ export default {
                 .catch((error) => {
                     console.error('Error sending message:', error);
                     this.messageForUser = "Messaggio non inviato.";
-                    this.classuser = "alert-danger";
-                });
-            this.message = '';
-            this.emailform = '';
 
+                    this.classuser = "alert-danger";
+                }).finally(() => {
+                });
+                
+                this.message = '';
+                this.emailform = '';
+                this.messageForUser = "";
         },
 
         scrollToTOP() {
