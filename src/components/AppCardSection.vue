@@ -31,7 +31,7 @@ export default {
 <template>
     <div class="bg ms_backC_card pb-5">
         <div class="container mt-5 mb-5">
-            <h1 class="pt-5 result mb-4">RISULTATI RICERCA</h1>
+            <h1 class="pt-5 result mb-4 text-center">Risultati ricerca</h1>
             <div class="row d-flex justify-content-between column-gap-3 flex-wrap">
                 <AppFlatCard />
 

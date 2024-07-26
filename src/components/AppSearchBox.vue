@@ -101,9 +101,6 @@ export default {
         <input type="hidden" name="longitude" :value="longitude">
     </div>
 
-
-
-
 </template>
 
 <style scoped lang="scss">
