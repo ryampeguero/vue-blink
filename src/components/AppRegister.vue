@@ -7,6 +7,7 @@ export default {
             store,
             email: '',
             password: '',
+            passwordControl: '',
             ricorda: false,
             emailErrore: '',
             passwordErrore: '',
@@ -29,60 +30,26 @@ export default {
             if (this.email && this.password) {
                 console.log(this.email);
                 console.log(this.password);
-
-                var xhr = new XMLHttpRequest();
-                xhr.withCredentials = true;
-
-                var loginUrl = new URL('http://127.0.0.1:8000/api/register');
-                var params1 = {
+                const body = {
+                    name: this.name,
                     email: this.email,
-                    password: this.password
+                    password: this.password,
+                    password_confirmation: this.passwordControl
                 }
-                loginUrl.search = new URLSearchParams(params1).toString();
+                axios.post('http://127.0.0.1:8000/api/register', body).then((resp) => {
+                    console.log(resp.data.access_token);
+                    this.token = resp.data.access_token;
+                    this.token = this.token.split('|')[1];
+                    console.log(this.token);
 
-                xhr.addEventListener("readystatechange", function () {
-                    if (this.readyState === 4) {
-                        const resp = JSON.parse(this.responseText);
-                        console.log(resp);
-                        this.token = resp.access_token;
-                        this.token = this.token.split('|')[1];
-                        console.log(this.token);
-                        // WARNING: For GET requests, body is set to null by browsers.
-
-                        var xhr = new XMLHttpRequest();
-                        xhr.withCredentials = true;
-
-                        xhr.addEventListener("readystatechange", function () {
-                            if (this.readyState === 4) {
-
-                                this.name = this.responseText.split(',')[1];
-                                this.name = this.name.split(':')[1];
-                                this.name = this.name.replace(/"/g, '');
-
-
-                            }
-
-                        });
-
-                        xhr.open("GET", 'http://127.0.0.1:8000/api/user');
-                        // WARNING: Cookies will be stripped away by the browser before sending the request.
-                        // xhr.setRequestHeader("Cookie", "XSRF-TOKEN=eyJpdiI6IkhtWjh1WUtLUkFoaks0L0FzQ1phMFE9PSIsInZhbHVlIjoickdTUW14ckhtTG5abU9ITzdENjM4c1BkM1oydEtCdTY3MU1KMVdDT2xmbUpWR214R1UrYmNFeXJ0Z0xZZFBHM1RBMTEwS1l0Z3VKelRZWkNacE9EaHJEU24rU2doUUpBQmlzbVUxL2FtNWdDbzI2SnVNZFVHNXhBaituUFdMOVUiLCJtYWMiOiI3YTZkNmIzNGM2ZGU3NTIyMTkyNzEyNGE0M2I2Zjc2ODQ1ZTgyZjIwM2Q3ZTFhMzhlZTVmYmNhOTVhNmViMWVlIiwidGFnIjoiIn0%3D; laravel_session=eyJpdiI6Im1kUDhqMXM5NjBEVmtMNkxHN2hnUGc9PSIsInZhbHVlIjoiL0VhWjhVenIvbGd4U1gzQVBjdjg2d2dwc014dnNUTW90djNFRWsvYjVSd21FVmZObGlpNHJHVTBBM0JsNzQ3UE10THIzeFVxNGFOYkY2d0RnOTJ5M0REQlFuczdvWXpyZm5WT0k2UlBmUFMxVzRVanBJMWZiRStqYkpYMjQ1VEciLCJtYWMiOiJmNGVjOTI0NmZhZjVmZjUyYTM4MzRkMDc5OWVlNGQzMzAxMjUyNGEwNDBmN2JmMmQxOGVhZjc0ZjQxNzA5MTVkIiwidGFnIjoiIn0%3D");
-                        xhr.setRequestHeader('Accept', '*/*');
-
-                        xhr.setRequestHeader('Authorization', resp.token_type + " " + this.token);
-                        xhr.send();
-                    }
-                });
-
-                xhr.open("POST", loginUrl);
-
-                xhr.send();
-                this.store.email = this.email;
-                this.store.token = this.token;
-                this.store.password = this.password;
-                this.store.name = this.name;
-
+                    this.store.email = this.email;
+                    this.store.token = this.token;
+                    this.store.password = this.password;
+                    this.store.name = this.name;
+                    window.location.replace("http://127.0.0.1:8000/admin");
+                })
             }
+
         },
         passwordDimenticata() {
             // Gestione della password dimenticata
@@ -98,7 +65,7 @@ export default {
 
 <template>
 
-    <form  @submit.prevent="gestisciInvio">
+    <form @submit.prevent="gestisciInvio">
         <div class="ms_card_out mt-5 container d-flex">
             <div class="row">
 
@@ -120,17 +87,17 @@ export default {
                     <div class="mb-4 row-column">
                         <div class="">
                             <div>
-                                <label class="col-form-label text-md-right"  for="Name">Nome</label>
+                                <label class="col-form-label text-md-right" for="Name">Nome</label>
                                 <input v-model="name" class="form-control" type="text">
                             </div>
                             <div>
-                                <label class="col-form-label text-md-right"  for="LastName">Cognome</label>
+                                <label class="col-form-label text-md-right" for="LastName">Cognome</label>
                                 <input v-model="lastname" class="form-control" type="text">
                             </div>
                             <label for="email" class="col-form-label text-md-right">E-Mail</label>
                             <div class="">
                                 <input id="email" type="email" class="form-control" v-model="email"
-                                    :class="{ 'is-invalid': emailErrore }" required autocomplete="email" autofocus />
+                                    :class="{ 'is-invalid': emailErrore }" required autofocus autocomplete="off" />
                                 <span v-if="emailErrore" class="invalid-feedback" role="alert">
                                     <strong>{{ emailErrore }}</strong>
                                 </span>
@@ -141,8 +108,15 @@ export default {
                             <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
                             <div class="">
                                 <input id="password" type="password" class="form-control" v-model="password"
-                                    :class="{ 'is-invalid': passwordErrore }" required
-                                    autocomplete="current-password" />
+                                    :class="{ 'is-invalid': passwordErrore }" required autocomplete="off" />
+                                <span v-if="passwordErrore" class="invalid-feedback" role="alert">
+                                    <strong>{{ passwordErrore }}</strong>
+                                </span>
+                            </div>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">Ancora una volta</label>
+                            <div class="">
+                                <input id="password" type="password" class="form-control" v-model="passwordControl"
+                                    :class="{ 'is-invalid': passwordErrore }" required />
                                 <span v-if="passwordErrore" class="invalid-feedback" role="alert">
                                     <strong>{{ passwordErrore }}</strong>
                                 </span>
@@ -153,7 +127,7 @@ export default {
                         </div>
                         <div class="mb-4 mb-0">
                             <div class="d-flex flex-column align-items-end">
-                                <button type="submit" class="ms_button" @click="callRegisterApi">Accedi</button>
+                                <button type="submit" class="ms_button" @click="callRegisterApi">Registrati</button>
                                 <a class="btn btn-link" href="#" @click.prevent="passwordDimenticata">
                                     Hai dimenticato la password?
                                 </a>
@@ -180,6 +154,6 @@ export default {
 
 .ms_card_out {
     background-color: white !important;
-    
+
 }
 </style>
