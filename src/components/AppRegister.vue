@@ -65,7 +65,7 @@ export default {
 
 <template>
 
-    <form @submit.prevent="gestisciInvio">
+    <form @submit.prevent="gestisciInvio" novalidate>
         <div class="ms_card_out mt-5 container d-flex">
             <div class="row">
 
