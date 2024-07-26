@@ -1,4 +1,6 @@
 <script>
+import { useAttrs } from 'vue';
+
 export default {
     data() {
         return {
@@ -15,9 +17,31 @@ export default {
                     title: "Registrazione",
                     routeName: "register"
                 },
-            ]
+            ],
+            user: null,
+            imgUrlBase: 'http://127.0.0.1:8000/storage',
         }
     },
+    created() {
+        // Recupera i dati dell'utente dal localStorage
+        const userData = localStorage.getItem('user');
+        if (userData) {
+            this.user = JSON.parse(userData);
+        }
+    },
+    methods: {
+    logout() {
+      // Rimuovi i dati dell'utente e il token dal localStorage
+      localStorage.removeItem('user');
+      localStorage.removeItem('token');
+      
+      // Reimposta lo stato dell'utente
+      this.user = null;
+      
+      // Naviga verso la pagina di login
+      this.$router.push('/login');
+    }
+  }
 }
 </script>
 
@@ -50,7 +74,9 @@ export default {
         <div class="header">
             <div class="prova">
                 <div class="navbar-brand ms-3">
-                    <img class="logo" src="../../public/Icons/blink-logo-white.svg" alt="business logo">
+              <a href="http://localhost:5174/">
+                  <img class="logo" src="../../public/Icons/blink-logo-white.svg" alt="business logo">
+              </a>
                 </div>
             </div>
             <div class="d-lg-none prova_btn me-3">
@@ -62,17 +88,24 @@ export default {
             </div>
             <div class="prova d-flex justify-content-center">
                 <div class="collapse navbar-collapse me-4" id="navbarsExample05">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-2" id="login">
-                        <li v-for="(item, index) in menu" class="">
-                            <router-link :to="{ name: item.routeName }" class="nav-link p-3 ">
-                                <div class="d-flex">
-                                    {{ item.title }} <span v-if="index == menu.length - 1">
-                                        <img class="icon_redi" src="../../public/Icons/sign_in.svg" alt="">
-                                    </span>
-                                </div>
-                            </router-link>
-                        </li>
-                    </ul>
+                    <div class="" v-if="!user">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-2" id="login" >
+                            <li v-for="(item, index) in menu" class="" >
+                                <router-link :to="{ name: item.routeName }" class="nav-link p-3 ">
+                                    <div class="d-flex">
+                                        {{ item.title }} <span v-if="index == menu.length - 1">
+                                            <img class="icon_redi" src="../../public/Icons/sign_in.svg" alt="">
+                                        </span>
+                                    </div>
+                                </router-link>
+                            </li>
+                        </ul>
+                    </div>
+                    <div v-else class="d-flex align-items-center gap-3">
+                        <img class="imgUser rounded-circle" :src="user.img_path ? `${imgUrlBase}/${user.img_path}` : `public/img/placeholder-img.png`" alt="UserAvatar"/>
+                        <span>{{ user.name }}</span>
+                        <button class="btn btn-primary" @click="logout">Logout</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -87,7 +120,9 @@ export default {
 <style lang="scss" scoped>
 @use"../scss/partials/_variables" as*;
 
-
+.imgUser {
+    max-width: 70px !important; 
+}
 
 #login {
 
@@ -129,10 +164,10 @@ export default {
         box-shadow: $shadow2;
 
         .router-link-active {
-                    color: #FF6827;
-                    font-weight: bolder;
-                }
-                
+            color: #FF6827;
+            font-weight: bolder;
+        }
+
     }
 
 }

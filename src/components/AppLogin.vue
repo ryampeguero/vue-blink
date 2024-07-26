@@ -46,8 +46,18 @@ export default {
                         console.log(resp);
                         this.token = resp.access_token;
                         this.token = this.token.split('|')[1];
+                        const userData = resp.user;
                         console.log(this.token);
+                        console.log(userData);
                         // WARNING: For GET requests, body is set to null by browsers.
+
+                        localStorage.setItem('token', this.token);
+                        localStorage.setItem('user', JSON.stringify(userData));
+
+                        // console.log('User:', JSON.parse(localStorage.getItem('user')));
+
+                        
+                        window.location.href = "http://localhost:5174/"
 
                         var xhr = new XMLHttpRequest();
                         xhr.withCredentials = true;
@@ -98,7 +108,7 @@ export default {
 
 <template>
 
-    <form  @submit.prevent="gestisciInvio">
+    <form  @submit.prevent="gestisciInvio" novalidate>
 
         
         <div class="ms_card_out mt-5 container d-flex">
