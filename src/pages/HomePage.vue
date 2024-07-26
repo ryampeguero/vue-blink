@@ -13,7 +13,17 @@ export default {
         return {
         
         }
-    }
+    },
+
+    methods:  {
+        scrollToTOP() {
+            window.scrollTo(0,0);
+        }
+    },
+
+    created() {
+        this.scrollToTOP();
+    },
 }
 </script>
 
