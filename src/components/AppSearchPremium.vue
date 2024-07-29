@@ -7,22 +7,36 @@ export default {
     components: {
         AppFlatCard
     },
+    props: {
+        isHome: Boolean,
+    },
     data() {
         return {
             store,
             prova: store.searchPremium,
         };
     },
+    created() {
+        if (this.isHome) {
+            this.getPremiums();
+        }
+    },
     watch: {
         prova: function (newVal) {
             console.log('sono qua dentro');
-            if (newVal) {
+            if (newVal && this.isHome == false) {
                 this.searchPremium();
 
             }
         }
     },
     methods: {
+        getPremiums() {
+            axios.get('http://127.0.0.1:8000/api/flats/premium').then((response) => {
+                this.store.flatArrayPremium = response.data.results;
+                console.log('prova');
+            });
+        },
         searchPremium() {
             this.store.flatsLoaded = false;
             console.log('Latitude:', this.store.latitude);
@@ -37,6 +51,7 @@ export default {
             })
                 .then(response => {
                     this.store.flatArrayPremium = response.data.results;
+
                     console.log("Risultati:", response.data.results);
                 })
                 .catch(error => {
@@ -55,7 +70,7 @@ export default {
         <div class="container">
             <h1 class="pt-5 result mb-4 text-white text-center mb-5">Appartamenti sponsorizzati</h1>
             <div class="row d-flex justify-content-between flex-wrap">
-                <AppFlatCard :isPremium=true />
+                <AppFlatCard :isPremium=true :isHome=true />
             </div>
         </div>
     </div>

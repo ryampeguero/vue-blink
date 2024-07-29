@@ -14,6 +14,7 @@ export default {
     },
     props: {
         isPremium: Boolean,
+        isHome: Boolean
     },
     created() {
         console.log("Sono premium", this.isPremium);
@@ -53,12 +54,28 @@ export default {
         </router-link>
 
     </div>
-    <div v-else v-for="flat in isPremium ? store.flatArrayPremium : store.flatArray" :class="{
+    <div v-else-if="isHome==false" v-for="flat in isPremium ? store.flatArrayPremium : store.flatArray" :class="{
         'border_basic': flat.receipts[0].plan_id == 1,
         'border_intermade': flat.receipts[0].plan_id == 2,
         'border_premium': flat.receipts[0].plan_id == 3
     }" class="col-sm-12 mb-5 col-md-12 col-lg-5 ms_backC_tertiary p-0 ms_border" >
 
+        <router-link :to="{ name: 'single-card', params: { slug: flat.slug } }"
+            class="ms_card_img mt-5 text-decoration-none">
+
+            <img class="img_container"
+                :src="flat.img_path ? `${imgUrlBase}/${flat.img_path}` : `public/img/placeholder-img.png`" alt="">
+            <div class="p-3 p-4">
+                <input type="hidden" :value="`{{ flat.slug }}`">
+                <h1 class="title_flat">{{ flat.name }}</h1>
+                <h4><i class="fa-solid fa-person-shelter"></i> Stanze: {{ flat.rooms }}</h4>
+                <h4><i class="fa-solid fa-bed"></i> Letti: {{ flat.beds }}</h4>
+                <h4><i class="fa-solid fa-bath"></i> Bagni: {{ flat.bathrooms }}</h4>
+            </div>
+        </router-link>
+    </div>
+
+    <div v-else v-for="flat in isPremium ? store.flatArrayPremium : store.flatArray"  class="col-sm-12 mb-5 col-md-12 col-lg-5 ms_backC_tertiary p-0 ms_border border_premium">
         <router-link :to="{ name: 'single-card', params: { slug: flat.slug } }"
             class="ms_card_img mt-5 text-decoration-none">
 

@@ -33,7 +33,7 @@ export default {
 <template>
     <AppHeroAR />
     <AppSearchPremium />
-    <AppCardSection />
+    <AppCardSection :isHome=false />
 
 </template>
 

@@ -1,13 +1,15 @@
 <script>
 import AppCardSection from "../components/AppCardSection.vue";
 import AppFirstSection from "../components/AppFirstSection.vue";
-import AppHero from "../components/AppHero.vue"
+import AppHero from "../components/AppHero.vue";
+import AppSearchPremium from "../components/AppSearchPremium.vue";
 
 export default {
     components: {
         AppHero,
         AppFirstSection,
         AppCardSection,
+        AppSearchPremium
     },
     data() {
         return {
@@ -29,7 +31,8 @@ export default {
 
 <template>
     <AppHero />
-    <AppFirstSection/>
+    <AppFirstSection />
+    <AppSearchPremium :isHome=true />
 </template>
 
 <style scoped lang="scss">
