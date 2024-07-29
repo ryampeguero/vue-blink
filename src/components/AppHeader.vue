@@ -81,7 +81,12 @@ export default {
                             :src="user.img_path ? `${imgUrlBase}/${user.img_path}` : `public/img/placeholder-img.png`"
                             alt="UserAvatar" />
                         <span>{{ user.name }}</span>
-                        <button class="btn btn-primary" @click="logout">Logout</button>
+                        <a class="btn btn-light" href="http://127.0.0.1:8000/">
+                            <i class="fa-solid fa-screwdriver-wrench"></i>
+                        </a>
+                        <button class="btn btn-primary" @click="logout">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                        </button>
                     </div>
                 </div>
             </div>
