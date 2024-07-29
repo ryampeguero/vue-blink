@@ -6,7 +6,7 @@ export default {
         return {
             menu: [
                 {
-                    title: "HOME",
+                    title: "Home",
                     routeName: "home"
                 },
                 {
@@ -30,53 +30,31 @@ export default {
         }
     },
     methods: {
-    logout() {
-      // Rimuovi i dati dell'utente e il token dal localStorage
-      localStorage.removeItem('user');
-      localStorage.removeItem('token');
-      
-      // Reimposta lo stato dell'utente
-      this.user = null;
-      
-      // Naviga verso la pagina di login
-      this.$router.push('/login');
+        logout() {
+            // Rimuovi i dati dell'utente e il token dal localStorage
+            localStorage.removeItem('user');
+            localStorage.removeItem('token');
+
+            // Reimposta lo stato dell'utente
+            this.user = null;
+
+            // Naviga verso la pagina di login
+            this.$router.push('/login');
+        }
     }
-  }
 }
 </script>
 
 <template>
-    <!-- 
-    <section class="header-menu">
-        <div class="d-flex align-items-center ms-2">
-            <img class="logo" src="../../public/Icons/blink-logo-white.svg" alt="business logo">
-        </div>
-
-        <ul class="align-items-center gap-4 me-4 d-none d-sm-flex d-md-flex">
-            <li v-for="item in menu">
-                <router-link :to="{ name: item.routeName }" class="nav-link p-3">{{ item.title }}</router-link>
-            </li>
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="true">
-                    Dropdown button
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="dropdown">Action</a></li>
-                    <li><a class="dropdown-item" href="dropdown">Another action</a></li>
-                    <li><a class="dropdown-item" href="dropdown">Something else here</a></li>
-                </ul>
-            </div>
-        </ul> -->
 
     <nav class="navbar navbar-expand-lg fixed-top bg-white py-3" aria-label="Fifth navbar example">
 
         <div class="header">
             <div class="prova">
                 <div class="navbar-brand ms-3">
-              <a href="http://localhost:5174/">
-                  <img class="logo" src="../../public/Icons/blink-logo-white.svg" alt="business logo">
-              </a>
+                    <a href="http://localhost:5174/">
+                        <img class="logo" src="../../public/Icons/blink-logo-white.svg" alt="business logo">
+                    </a>
                 </div>
             </div>
             <div class="d-lg-none prova_btn me-3">
@@ -89,20 +67,20 @@ export default {
             <div class="prova d-flex justify-content-center">
                 <div class="collapse navbar-collapse me-4" id="navbarsExample05">
                     <div class="" v-if="!user">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-2" id="login" >
-                            <li v-for="(item, index) in menu" class="" >
-                                <router-link :to="{ name: item.routeName }" class="nav-link p-3 ">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-2" id="login">
+                            <li v-for="(item, index) in menu" class="">
+                                <router-link :to="{ name: item.routeName }" class="nav-link p-3" :class="index == menu.length - 1 ? 'last': ''">
                                     <div class="d-flex">
-                                        {{ item.title }} <span v-if="index == menu.length - 1">
-                                            <img class="icon_redi" src="../../public/Icons/sign_in.svg" alt="">
-                                        </span>
+                                        {{ item.title }} 
                                     </div>
                                 </router-link>
                             </li>
                         </ul>
                     </div>
                     <div v-else class="d-flex align-items-center gap-3">
-                        <img class="imgUser rounded-circle" :src="user.img_path ? `${imgUrlBase}/${user.img_path}` : `public/img/placeholder-img.png`" alt="UserAvatar"/>
+                        <img class="imgUser rounded-circle"
+                            :src="user.img_path ? `${imgUrlBase}/${user.img_path}` : `public/img/placeholder-img.png`"
+                            alt="UserAvatar" />
                         <span>{{ user.name }}</span>
                         <button class="btn btn-primary" @click="logout">Logout</button>
                     </div>
@@ -111,7 +89,7 @@ export default {
         </div>
     </nav>
 
-    <!-- </section> -->
+
 
 
 
@@ -121,7 +99,7 @@ export default {
 @use"../scss/partials/_variables" as*;
 
 .imgUser {
-    max-width: 70px !important; 
+    max-width: 70px !important;
 }
 
 #login {
