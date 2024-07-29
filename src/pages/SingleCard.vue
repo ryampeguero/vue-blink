@@ -17,7 +17,7 @@ export default {
             axios.post(`http://127.0.0.1:8000/api/send-message`, {
 
                 message: this.message,
-                id_flat: this.flat.id,
+                flat_id: this.flat.id,
                 email: this.emailform,
 
             })
