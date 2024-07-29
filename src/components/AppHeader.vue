@@ -69,10 +69,9 @@ export default {
                     <div class="" v-if="!user">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-2" id="login">
                             <li v-for="(item, index) in menu" class="">
-                                <router-link :to="{ name: item.routeName }" class="nav-link p-3" :class="index == menu.length - 1 ? 'last': ''">
-                                    <div class="d-flex">
-                                        {{ item.title }} 
-                                    </div>
+                                <router-link :to="{ name: item.routeName }" class="nav-link p-3"
+                                    :class="index == menu.length - 1 ? 'last' : ''">
+                                    {{ item.title }}
                                 </router-link>
                             </li>
                         </ul>

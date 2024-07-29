@@ -141,5 +141,8 @@ export default {
 
 .info_card {
     display: flex;
+    @media screen and (max-width:400px) {
+        margin-bottom: 300px;
+    }
 }
 </style>
