@@ -39,6 +39,14 @@ export default {
                 this.messageForUser = "";
         },
 
+        infoUser() {
+            const user = JSON.parse(localStorage.getItem('user'));
+            console.log(user);
+            if (user && user.email) {
+                this.emailform = user.email;
+            }
+        },
+
         scrollToTOP() {
             window.scrollTo(0, 0);
         },
@@ -63,6 +71,7 @@ export default {
 
     created() {
         this.scrollToTOP();
+        this.infoUser();
         const slug = this.$route.params.slug;
         console.log(slug);
         axios.get(`http://127.0.0.1:8000/api/info/${slug}`).then((resp) => {
@@ -108,7 +117,7 @@ export default {
                     <div class="mt-3 d-flex flex-column">
                         <label for="emailform" class="form-label">Inserisci la tua email</label>
                         <input type="email" v-model="emailform" class="ms_card" name="emailform" id="emailform"
-                            cols="30" rows="3"></input>
+                            cols="30" rows="3">{{ this.email }}</input>
                     </div>
                     <div class="d-flex justify-content-end mt-3">
                         <button class="ms_button" type="submit">Invia</button>
