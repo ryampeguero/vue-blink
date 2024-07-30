@@ -33,10 +33,10 @@ export default {
                     this.classuser = "alert-danger";
                 }).finally(() => {
                 });
-                
-                this.message = '';
-                this.emailform = '';
-                this.messageForUser = "";
+
+            this.message = '';
+            this.emailform = '';
+            this.messageForUser = "";
         },
 
         infoUser() {
@@ -102,6 +102,14 @@ export default {
                     <h4><i class="fa-solid fa-person-shelter"></i> Stanze: {{ flat.rooms }}</h4>
                     <h4><i class="fa-solid fa-bed"></i> Letti: {{ flat.beds }}</h4>
                     <h4><i class="fa-solid fa-bath"></i> Bagni: {{ flat.bathrooms }}</h4>
+
+                    <h3>Servizi:</h3>
+                    <div class="d-flex gap-3">
+                        <div v-for="service in flat.services">
+                            <h4><i class="fa-solid" :class="service.icon"></i></h4>
+                        </div>
+                    </div>
+
                 </div>
 
                 <form @submit.prevent="sendMessage" class="ms_card p-3 mt-3">
@@ -150,6 +158,7 @@ export default {
 
 .info_card {
     display: flex;
+
     @media screen and (max-width:400px) {
         margin-bottom: 300px;
     }
