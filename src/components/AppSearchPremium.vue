@@ -69,11 +69,17 @@ export default {
     <div class="bg ms_backC_card_spons pb-5 ">
         <div class="container">
             <h1 class="pt-5 result mb-4 text-white text-center mb-5">Appartamenti sponsorizzati</h1>
-            <div class="row d-flex justify-content-between flex-wrap">
+            <div class="row premium-section">
                 <AppFlatCard :isPremium=true :isHome=true />
             </div>
         </div>
     </div>
 </template>
 
-<style></style>
+<style>
+.premium-section {
+    display: flex;
+    justify-content: center !important;
+    gap: 10px;   
+}
+</style>
