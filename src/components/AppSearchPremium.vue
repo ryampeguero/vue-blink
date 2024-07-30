@@ -9,6 +9,7 @@ export default {
     },
     props: {
         isHome: Boolean,
+        premiumText: String,
     },
     data() {
         return {
@@ -68,7 +69,7 @@ export default {
 <template>
     <div class="bg ms_backC_card_spons pb-5 ">
         <div class="container">
-            <h1 class="pt-5 result mb-4 text-white text-center mb-5">Appartamenti sponsorizzati</h1>
+            <h1 class="pt-5 result mb-4 text-white text-center mb-5">{{ premiumText }}</h1>
             <div class="row premium-section">
                 <AppFlatCard :isPremium=true :isHome=true />
             </div>

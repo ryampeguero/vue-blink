@@ -32,7 +32,7 @@ export default {
 
 <template>
     <AppHeroAR />
-    <AppSearchPremium />
+    <AppSearchPremium :premiumText="`Appartamenti Sponsorizzati`"/>
     <AppCardSection :isHome=false />
 
 </template>

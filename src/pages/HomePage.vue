@@ -32,7 +32,7 @@ export default {
 <template>
     <AppHero />
     <AppFirstSection />
-    <AppSearchPremium :isHome=true />
+    <AppSearchPremium :isHome=true :premiumText="`Appartamenti in Evidenza`" />
 </template>
 
 <style scoped lang="scss">
