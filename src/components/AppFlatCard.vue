@@ -86,6 +86,7 @@ export default {
                 <h4><i class="fa-solid fa-person-shelter"></i> Stanze: {{ flat.rooms }}</h4>
                 <h4><i class="fa-solid fa-bed"></i> Letti: {{ flat.beds }}</h4>
                 <h4><i class="fa-solid fa-bath"></i> Bagni: {{ flat.bathrooms }}</h4>
+
             </div>
         </router-link>
     </div>
@@ -93,8 +94,10 @@ export default {
 
 <style lang="scss" scoped>
 .ms_card {
+    transition: all .2s ease-in-out;
     &:hover{
         box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+        transform: scale(1.1);
     }
 }
 
