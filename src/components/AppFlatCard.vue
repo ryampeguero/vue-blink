@@ -38,7 +38,7 @@ export default {
 <template>
 
     <div v-if="isPremium == false" v-for="flat in isPremium ? store.flatArrayPremium : store.flatArray"
-        class="col-sm-12 mb-5 col-md-12 col-lg-5 ms_backC_tertiary p-0 ms_border" >
+        class="col-sm-12 mb-5 col-md-12 col-lg-5 ms_backC_tertiary p-0 ms_border ms_card" >
         <router-link :to="{ name: 'single-card', params: { slug: flat.slug } }"
             class="ms_card_img mt-5 text-decoration-none ">
             <input id="flatId" type="hidden" name="" :value="flat.id">
@@ -58,7 +58,7 @@ export default {
         'border_basic': flat.receipts[0].plan_id == 1,
         'border_intermade': flat.receipts[0].plan_id == 2,
         'border_premium': flat.receipts[0].plan_id == 3
-    }" class="col-sm-12 mb-5 col-md-12 col-lg-5 ms_backC_tertiary p-0 ms_border" >
+    }" class="col-sm-12 mb-5 col-md-12 col-lg-5 ms_backC_tertiary p-0 ms_border ms_card" >
 
         <router-link :to="{ name: 'single-card', params: { slug: flat.slug } }"
             class="ms_card_img mt-5 text-decoration-none">
@@ -75,7 +75,7 @@ export default {
         </router-link>
     </div>
 
-    <div v-else v-for="flat in isPremium ? store.flatArrayPremium : store.flatArray"  class="col-sm-12 mb-5 col-md-12 col-lg-3 ms_backC_tertiary p-0 ms_border border_premium">
+    <div v-else v-for="flat in isPremium ? store.flatArrayPremium : store.flatArray"  class="col-sm-12 mb-5 col-md-12 col-lg-3 ms_backC_tertiary p-0 ms_border border_premium ms_card">
         <router-link :to="{ name: 'single-card', params: { slug: flat.slug } }"
             class="ms_card_img mt-5 text-decoration-none">
             <img class="img_container"
@@ -92,8 +92,10 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-.prova {
-    
+.ms_card {
+    &:hover{
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    }
 }
 
 .img_container {
