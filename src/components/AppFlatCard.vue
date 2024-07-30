@@ -75,10 +75,9 @@ export default {
         </router-link>
     </div>
 
-    <div v-else v-for="flat in isPremium ? store.flatArrayPremium : store.flatArray"  class="col-sm-12 mb-5 col-md-12 col-lg-5 ms_backC_tertiary p-0 ms_border border_premium">
+    <div v-else v-for="flat in isPremium ? store.flatArrayPremium : store.flatArray"  class="col-sm-12 mb-5 col-md-8 col-lg-3 ms_backC_tertiary p-0 ms_border border_premium">
         <router-link :to="{ name: 'single-card', params: { slug: flat.slug } }"
             class="ms_card_img mt-5 text-decoration-none">
-
             <img class="img_container"
                 :src="flat.img_path ? `${imgUrlBase}/${flat.img_path}` : `public/img/placeholder-img.png`" alt="">
             <div class="p-3 p-4">
